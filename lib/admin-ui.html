@@ -223,6 +223,16 @@
         </button>
       </div>
       <div class="content">
+        <div class="scard" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+          <div style="flex:1;min-width:220px">
+            <div class="h" style="margin-bottom:6px">Phiên bản ERP trên thanh tiêu đề</div>
+            <div style="font-size:12.5px;color:var(--faint)">Hiện ở nút góc phải đầu trang công khai (vd “ERP v2.4.0”). Lưu xong áp dụng ngay — chỉ cần tải lại trang công khai.</div>
+          </div>
+          <input class="fld mini" id="erp-version" style="width:170px;flex:none" placeholder="v2.4.0" maxlength="40">
+          <button class="btn btn--brand" id="btn-erp-save" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lưu phiên bản
+          </button>
+        </div>
         <div class="stats">
           <div class="stat"><div class="k">Tổng bài viết</div><div class="v" id="st-total">0</div></div>
           <div class="stat"><div class="k">Đã xuất bản</div><div class="v ok" id="st-pub">0</div></div>
@@ -310,7 +320,7 @@
           </div>
 
           <div>
-            <label class="lab" for="f-body">Nội dung chi tiết</label>
+            <label class="lab" for="f-body">Nội dung chi tiết <span class="hint">(hỗ trợ Markdown · bấm nút ảnh, dán hoặc kéo-thả để chèn ảnh minh hoạ)</span></label>
             <div class="ed-box">
               <div class="ed-toolbar">
                 <button type="button" data-md="bold" title="In đậm">B</button>
@@ -319,9 +329,14 @@
                 <button type="button" data-md="list" title="Danh sách">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
                 </button>
+                <span style="flex:1"></span>
+                <button type="button" data-md="image" title="Chèn ảnh minh hoạ">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                </button>
               </div>
-              <textarea id="f-body" placeholder="Viết changelog: Tính năng mới, Cải tiến, Sửa lỗi… (hỗ trợ Markdown)"></textarea>
+              <textarea id="f-body" placeholder="Viết changelog: Tính năng mới, Cải tiến, Sửa lỗi… (hỗ trợ Markdown). Có thể dán ảnh chụp màn hình trực tiếp vào đây."></textarea>
             </div>
+            <input type="file" id="f-image" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml,image/avif,image/bmp" hidden>
           </div>
         </div>
 
@@ -486,6 +501,7 @@ function resetForm(){
   $('#f-title').value=''; $('#f-summary').value=''; $('#f-date').value=todayISO();
   $('#f-youtube').value=''; $('#f-origlabel').value=''; $('#f-version').value=''; $('#f-scope').value='Toàn hệ thống';
   $('#f-pdf').value=''; $('#f-original').value=''; $('#cur-pdf').textContent=''; $('#cur-original').textContent='';
+  const fImg=$('#f-image'); if(fImg) fImg.value='';
   $('#f-body').value='';
   $('#f-isnew').checked=true; $('#f-pinned').checked=false; $('#f-pub').checked=true;
   fillModules('Thông báo chung'); setType('none'); setCategory('');
@@ -586,6 +602,37 @@ function linePrefix(pre){
   const ls=v.lastIndexOf('\n',s-1)+1;
   ta.value=v.slice(0,ls)+pre+v.slice(ls); ta.focus();
 }
+function insertAtCursor(text){
+  const ta=$('#f-body'); const s=ta.selectionStart, e=ta.selectionEnd; const v=ta.value;
+  ta.value=v.slice(0,s)+text+v.slice(e);
+  ta.focus(); const pos=s+text.length; ta.setSelectionRange(pos,pos);
+}
+
+/* ---- Chèn ảnh vào "Nội dung chi tiết" ---- */
+// Đọc 1 tệp ảnh -> tải lên /api/upload-image -> chèn cú pháp Markdown ![alt](url).
+async function uploadBodyImage(fileObj){
+  if(!fileObj) return;
+  if(!/^image\//.test(fileObj.type||'')){ toast('Chỉ chèn được tệp ảnh (PNG, JPG, GIF, WEBP…).','err'); return; }
+  toast('Đang tải ảnh lên…','warn');
+  try{
+    const dataUrl=await new Promise((res,rej)=>{
+      const fr=new FileReader();
+      fr.onload=()=>res(fr.result);
+      fr.onerror=()=>rej(new Error('Không đọc được ảnh.'));
+      fr.readAsDataURL(fileObj);
+    });
+    const r=await fetch('/api/upload-image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dataUrl,name:fileObj.name||'anh'})});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||'Tải ảnh thất bại');
+    const alt=String(fileObj.name||'anh').replace(/\.[^.]+$/,'').replace(/[\[\]()]/g,' ').trim();
+    insertAtCursor('\n\n!['+alt+']('+j.url+')\n\n');
+    toast('Đã chèn ảnh vào nội dung. Nhớ bấm “Lưu & xuất bản” để áp dụng.','ok');
+  }catch(e){ toast(e.message,'err'); }
+}
+// Lấy ảnh từ dữ liệu dán/kéo-thả (DataTransfer hoặc clipboard) rồi tải lên.
+function imageFromItems(items){
+  for(const it of items||[]){ if(it.kind==='file' && /^image\//.test(it.type)) return it.getAsFile(); }
+  return null;
+}
 
 /* ---- Events ---- */
 $('#nav-list').addEventListener('click', showList);
@@ -602,15 +649,53 @@ document.querySelectorAll('.ed-toolbar button').forEach(b=> b.addEventListener('
   const k=b.getAttribute('data-md');
   if(k==='bold') wrapSel('**','**'); else if(k==='italic') wrapSel('*','*');
   else if(k==='h2') linePrefix('## '); else if(k==='list') linePrefix('- ');
+  else if(k==='image') $('#f-image').click();
 }));
+// Chèn ảnh: chọn từ máy / dán (Ctrl+V) / kéo-thả vào ô nội dung.
+$('#f-image').addEventListener('change', e=>{ const f=e.target.files && e.target.files[0]; e.target.value=''; uploadBodyImage(f); });
+$('#f-body').addEventListener('paste', e=>{
+  const f=imageFromItems(e.clipboardData && e.clipboardData.items);
+  if(f){ e.preventDefault(); uploadBodyImage(f); }
+});
+$('#f-body').addEventListener('dragover', e=>{ if(e.dataTransfer && Array.from(e.dataTransfer.types||[]).includes('Files')){ e.preventDefault(); } });
+$('#f-body').addEventListener('drop', e=>{
+  const f=imageFromItems(e.dataTransfer && e.dataTransfer.items) || (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]);
+  if(f && /^image\//.test(f.type)){ e.preventDefault(); uploadBodyImage(f); }
+});
 $('#list').addEventListener('click', e=>{
   const ed=e.target.closest('[data-edit]'); if(ed) return editPost(ed.getAttribute('data-edit'));
   const dl=e.target.closest('[data-del]'); if(dl) return delPost(dl.getAttribute('data-del'), dl.getAttribute('data-title'));
 });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#view-edit').hidden) showList(); });
 
+/* ---- Cấu hình: phiên bản ERP ---- */
+async function loadSite(){
+  try{
+    const r=await fetch('/api/site'); const j=await r.json();
+    if(j.ok && j.site) $('#erp-version').value=j.site.erpVersion||'';
+  }catch(e){ /* bỏ qua */ }
+}
+async function saveErpVersion(){
+  const btn=$('#btn-erp-save'); const v=$('#erp-version').value.trim();
+  if(!v){ toast('Vui lòng nhập số phiên bản ERP.','err'); return; }
+  btn.disabled=true; const old=btn.innerHTML; btn.textContent='Đang lưu…';
+  try{
+    const r=await fetch('/api/site',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({erpVersion:v})});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||'Lưu thất bại');
+    if(j.build && j.build.ok===false){
+      toast('Đã lưu phiên bản, nhưng build báo lỗi: '+esc(j.build.error),'warn',true);
+    }else{
+      toast('Đã cập nhật phiên bản ERP. Tải lại trang công khai (Ctrl+Shift+R) để thấy.','ok');
+    }
+  }catch(e){ toast(e.message,'err'); }
+  finally{ btn.disabled=false; btn.innerHTML=old; }
+}
+$('#btn-erp-save').addEventListener('click', saveErpVersion);
+$('#erp-version').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); saveErpVersion(); } });
+
 fillModules('Thông báo chung');
 loadList();
+loadSite();
 </script>
 </body>
 </html>

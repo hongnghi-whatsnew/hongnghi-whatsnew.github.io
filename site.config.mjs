@@ -11,7 +11,7 @@ export const SITE = {
   // Tên công ty hiển thị ở chân trang.
   company: 'Công ty MDF Hồng Nghi',
   // Số phiên bản ERP hiện hành — hiện ở góc phải thanh tiêu đề (vd 'v2.4.0').
-  erpVersion: 'v2.4.0',
+  erpVersion: 'v26.06',
   // Liên kết "Gửi yêu cầu hỗ trợ" ở trang chi tiết. Có thể là mailto: hoặc URL nội bộ.
   // Để trống ('') nếu muốn ẩn ô hỗ trợ.
   supportUrl: 'mailto:cntt@mdfhongnghi.vn',
