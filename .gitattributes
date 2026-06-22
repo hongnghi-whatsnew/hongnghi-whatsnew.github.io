@@ -1,0 +1,21 @@
+# Normalize line endings. The sibling ERP repo uses core.autocrlf=true,
+# so be explicit here to keep Windows (PowerShell) and Linux (CI) happy.
+* text=auto eol=lf
+
+# Windows-only scripts MUST stay CRLF
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets — never touch line endings
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.woff  binary
+*.woff2 binary
+*.docx binary
+*.pptx binary
+*.xlsx binary

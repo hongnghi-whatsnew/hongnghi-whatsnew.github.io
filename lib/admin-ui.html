@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HONGNGHI-WHATSNEW · Trang quản trị</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F3F2; --card:#fff; --ink:#241820; --head:#2B1019; --muted:#6E626A;
+    --faint:#A2929A; --brand:#8A1538; --pink:#D81B60; --deep:#5E0E26;
+    --line:#ECE3E6; --line2:#EFE6E9; --line3:#E7DDE1; --ok:#16A34A; --warn:#C07A1E;
+    --grad:linear-gradient(150deg,#D81B60,#5E0E26); --gold:linear-gradient(180deg,#F2D89A,#B8862F);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+       -webkit-font-smoothing:antialiased;line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  ::selection{background:#F5C0D6;color:var(--deep)}
+  input::placeholder,textarea::placeholder{color:#B0A0A8}
+  .app{display:flex;min-height:100vh}
+
+  /* ---- Sidebar ---- */
+  .sidebar{width:248px;flex-shrink:0;background:#fff;border-right:1px solid var(--line);
+           display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+  .sb-brand{padding:20px 18px;border-bottom:1px solid var(--line2);display:flex;align-items:center;gap:12px}
+  .badge{width:42px;height:42px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+         justify-content:center;box-shadow:0 6px 16px -6px rgba(94,14,38,.55);flex-shrink:0}
+  .badge span{font-weight:800;font-size:17px;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sb-name{font-weight:800;font-size:13.5px;color:#3A1525}
+  .sb-name i{color:var(--pink);font-style:normal}
+  .sb-sub{font-size:10.5px;font-weight:700;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-top:3px}
+  .sb-nav{padding:14px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .sb-label{font-size:11px;font-weight:800;letter-spacing:.8px;color:#BCAEB4;text-transform:uppercase;padding:8px 12px 6px}
+  .nav{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-size:14px;
+       font-weight:600;color:var(--muted);cursor:pointer;border:none;background:none;width:100%;text-align:left;
+       font-family:inherit;transition:background .15s,color .15s}
+  .nav:hover{background:#F2DEE6;color:var(--brand)}
+  .nav.is-active{background:#F2DEE6;color:var(--brand)}
+  .nav svg{width:17px;height:17px;flex-shrink:0}
+  .nav .num{margin-left:auto;font-size:12px;font-weight:700;background:#F2EBED;color:#8A7A82;padding:1px 8px;border-radius:999px}
+  .sb-foot{padding:14px;border-top:1px solid var(--line2);display:flex;align-items:center;gap:10px}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;
+          justify-content:center;color:#F2D89A;font-weight:800;font-size:12px;flex-shrink:0}
+  .sb-foot .nm{font-size:13px;font-weight:700;color:#3A1525}
+  .sb-foot .rl{font-size:11.5px;color:var(--faint)}
+
+  /* ---- Main ---- */
+  .main{flex:1;min-width:0}
+  .bar{position:sticky;top:0;z-index:10;background:rgba(246,243,242,.9);backdrop-filter:blur(10px);
+       border-bottom:1px solid var(--line);padding:20px 32px;display:flex;align-items:center;gap:16px}
+  .bar h1{margin:0 0 3px;font-size:22px;font-weight:800;letter-spacing:-.3px;color:var(--head)}
+  .bar .desc{font-size:13.5px;color:#8A7A82}
+  .bar .spacer{flex:1}
+  .content{padding:24px 32px}
+
+  .btn{appearance:none;border:1px solid transparent;border-radius:11px;padding:11px 18px;font-size:14px;
+       font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px;line-height:1;
+       transition:transform .12s,box-shadow .2s,background .15s,border-color .15s}
+  .btn svg{width:16px;height:16px}
+  .btn--pink{background:var(--pink);color:#fff;box-shadow:0 8px 18px -8px rgba(216,27,96,.55)}
+  .btn--pink:hover{transform:translateY(-1px);box-shadow:0 10px 22px -10px rgba(94,14,38,.5)}
+  .btn--brand{background:var(--brand);color:#fff}
+  .btn--brand:hover{transform:translateY(-1px);box-shadow:0 10px 22px -10px rgba(94,14,38,.5)}
+  .btn--ghost{background:#fff;color:var(--muted);border-color:var(--line3)}
+  .btn--ghost:hover{border-color:#E7C9D4;color:var(--brand)}
+
+  /* ---- Stats ---- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  .stat{background:#fff;border:1px solid var(--line2);border-radius:14px;padding:16px 18px}
+  .stat .k{font-size:12.5px;color:var(--faint);font-weight:600;margin-bottom:6px}
+  .stat .v{font-size:26px;font-weight:800;color:var(--head)}
+  .stat .v.ok{color:var(--ok)} .stat .v.warn{color:var(--warn)} .stat .v.pink{color:var(--pink)}
+
+  /* ---- Table ---- */
+  .tbl{background:#fff;border:1px solid var(--line2);border-radius:16px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  thead th{text-align:left;padding:13px 20px;background:#FBF7F9;border-bottom:1px solid #F0E7EA;
+           font-size:11.5px;font-weight:800;letter-spacing:.5px;color:var(--faint);text-transform:uppercase}
+  thead th.right{text-align:right}
+  tbody td{padding:15px 20px;border-bottom:1px solid #F4EDEF;vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr{transition:background .15s}
+  tbody tr:hover{background:#FBF4F7}
+  .ti{display:flex;align-items:center;gap:11px;min-width:0}
+  .tico{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:800}
+  .tt{font-size:14px;font-weight:700;color:var(--head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:380px}
+  .ts{font-size:12px;color:var(--faint)}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:7px;font-size:12px;font-weight:700}
+  .pill .dot{width:6px;height:6px;border-radius:50%}
+  .ver{font-size:13px;font-weight:700;color:#7A6E74}
+  .status{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .status--pub{background:rgba(22,163,74,.12);color:var(--ok)}
+  .status--draft{background:rgba(192,122,30,.14);color:var(--warn)}
+  .td-date{font-size:13px;color:#8A7A82}
+  .acts{display:flex;gap:6px;justify-content:flex-end}
+  .iconbtn{width:32px;height:32px;border-radius:9px;border:1px solid var(--line2);background:#fff;color:var(--muted);
+           cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,border-color .15s}
+  .iconbtn:hover{background:#F2DEE6;color:var(--brand)}
+  .iconbtn svg{width:15px;height:15px}
+  .iconbtn--del{border-color:#F3D9E1;color:var(--pink)}
+  .iconbtn--del:hover{background:#FCEBF1}
+  .iconbtn--back{width:38px;height:38px;border-radius:10px}
+  .iconbtn--back svg{width:18px;height:18px}
+  .empty,.loading{padding:46px;text-align:center;color:var(--muted)}
+
+  /* ---- Editor ---- */
+  .editor{padding:28px 32px;display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start;max-width:1120px}
+  .col{display:flex;flex-direction:column;gap:22px}
+  .col.right{position:sticky;top:96px;gap:18px}
+  label.lab{display:block;font-size:13px;font-weight:700;color:#3A1525;margin-bottom:8px}
+  .hint{font-weight:500;color:var(--faint);font-size:12.5px}
+  .fld{width:100%;border:1px solid var(--line3);border-radius:11px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink);
+       transition:border-color .15s,box-shadow .15s}
+  input.fld,select.fld{height:48px;padding:0 15px}
+  textarea.fld{padding:12px 15px;resize:vertical;line-height:1.55;font-size:14px}
+  .fld:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(216,27,96,.12);outline:none}
+  .typebtns{display:flex;gap:10px;flex-wrap:wrap}
+  .typebtn{padding:10px 16px;border-radius:10px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;
+           background:#fff;color:var(--muted);border:1px solid var(--line3);transition:all .15s}
+  .typebtn.is-active{background:var(--head);color:#fff;border-color:var(--head)}
+  .yt-wrap{display:flex;align-items:center;gap:10px;height:48px;padding:0 15px;border:1px solid var(--line3);border-radius:11px;background:#fff}
+  .yt-wrap svg{width:18px;height:18px;flex-shrink:0}
+  .yt-wrap input{border:none;outline:none;flex:1;font-family:inherit;font-size:14px;background:none;color:var(--ink)}
+  .drop{border:1.5px dashed #E0C9D2;border-radius:13px;padding:20px;background:#FCF7F9;cursor:pointer;display:block;text-align:center;transition:border-color .15s,background .15s}
+  .drop:hover{border-color:var(--pink);background:#FCEBF1}
+  .drop .ic{width:46px;height:46px;border-radius:12px;background:rgba(216,27,96,.10);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:var(--pink)}
+  .drop .ic svg{width:22px;height:22px}
+  .drop .t{font-size:14px;font-weight:700;color:var(--head)}
+  .drop .s{font-size:12.5px;color:var(--faint);margin-top:4px}
+  .drop input[type=file]{display:none}
+  .cur{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .cur b{color:#3A1525}
+  .ed-toolbar{display:flex;gap:2px;padding:8px 10px;border-bottom:1px solid var(--line2);background:#FBF7F9}
+  .ed-toolbar button{width:30px;height:30px;border-radius:7px;border:none;background:none;color:var(--muted);cursor:pointer;
+                     font-family:inherit;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .ed-toolbar button:hover{background:#F2DEE6;color:var(--brand)}
+  .ed-toolbar button.i{font-style:italic;font-weight:600}
+  .ed-toolbar svg{width:15px;height:15px}
+  .ed-box{border:1px solid var(--line3);border-radius:11px;background:#fff;overflow:hidden}
+  .ed-box textarea{width:100%;min-height:200px;padding:14px 15px;border:none;font-family:inherit;font-size:14px;line-height:1.6;resize:vertical;outline:none}
+
+  .scard{background:#fff;border:1px solid var(--line2);border-radius:15px;padding:18px}
+  .scard .h{font-size:12px;font-weight:800;letter-spacing:.6px;color:var(--faint);text-transform:uppercase;margin-bottom:15px}
+  .sublab{display:block;font-size:12.5px;font-weight:700;color:#5E4B53;margin-bottom:7px}
+  .selwrap{position:relative;margin-bottom:16px}
+  .selwrap svg{position:absolute;right:14px;top:15px;pointer-events:none;width:14px;height:14px}
+  select.fld{appearance:none;cursor:pointer;font-size:14px;height:44px}
+  input.mini{height:44px;font-size:14px}
+  .opt{display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:14px;position:relative}
+  .opt:last-child{margin-bottom:0}
+  .opt input{position:absolute;opacity:0;width:0;height:0}
+  .switch{position:relative;width:42px;height:24px;flex-shrink:0}
+  .track{position:absolute;inset:0;border-radius:999px;background:#D8CDD2;transition:background .18s}
+  .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .18s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .opt input:checked ~ .switch .track{background:var(--ok)}
+  .opt input:checked ~ .switch .knob{left:21px}
+  .opt .ot{font-size:13.5px;font-weight:700;color:var(--head)}
+  .opt .os{font-size:12px;color:var(--faint)}
+  .note{background:linear-gradient(135deg,#FBF4F7,#F8EEF2);border:1px solid #F0DCE4;border-radius:15px;padding:16px}
+  .note .t{font-size:13px;font-weight:700;color:var(--head);margin-bottom:5px}
+  .note .s{font-size:12.5px;line-height:1.55;color:#7A6E74}
+
+  /* ---- Toast ---- */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;min-width:300px;max-width:90vw;display:none}
+  .toast{padding:12px 16px;border-radius:11px;color:#fff;font-size:14px;box-shadow:0 12px 30px rgba(94,14,38,.28);display:flex;gap:10px;align-items:flex-start}
+  .toast a{color:#fff;text-decoration:underline;font-weight:700}
+  .toast--ok{background:var(--brand)} .toast--err{background:#B42318} .toast--warn{background:var(--warn)}
+
+  @media(max-width:980px){ .editor{grid-template-columns:1fr} .col.right{position:static} .stats{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:680px){ .sidebar{display:none} }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <span class="badge"><span>HN</span></span>
+      <div>
+        <div class="sb-name">HONGNGHI<i>-</i>WHATSNEW</div>
+        <div class="sb-sub">Trang quản trị</div>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-label">Nội dung</div>
+      <button class="nav is-active" id="nav-list" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        Tất cả bài viết <span class="num" id="nav-count">0</span>
+      </button>
+      <button class="nav" id="nav-new" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        Tạo bài mới
+      </button>
+      <div class="sb-label">Khác</div>
+      <a class="nav" href="/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        Xem trang công khai
+      </a>
+    </nav>
+    <div class="sb-foot">
+      <span class="avatar">IT</span>
+      <div><div class="nm">Phòng CNTT</div><div class="rl">Quản trị viên</div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- ===== LIST VIEW ===== -->
+    <section id="view-list">
+      <div class="bar">
+        <div>
+          <h1>Quản lý bản cập nhật</h1>
+          <div class="desc">Thêm, sửa, xoá các bài thông báo trước khi đẩy lên trang công khai.</div>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn btn--pink" id="btn-new2" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Tạo bài mới
+        </button>
+      </div>
+      <div class="content">
+        <div class="stats">
+          <div class="stat"><div class="k">Tổng bài viết</div><div class="v" id="st-total">0</div></div>
+          <div class="stat"><div class="k">Đã xuất bản</div><div class="v ok" id="st-pub">0</div></div>
+          <div class="stat"><div class="k">Bản nháp</div><div class="v warn" id="st-draft">0</div></div>
+          <div class="stat"><div class="k">Gắn nhãn Mới</div><div class="v pink" id="st-new">0</div></div>
+        </div>
+        <div class="tbl" id="list"><div class="loading">Đang tải…</div></div>
+      </div>
+    </section>
+
+    <!-- ===== EDITOR VIEW ===== -->
+    <section id="view-edit" hidden>
+      <div class="bar">
+        <button class="iconbtn iconbtn--back" id="btn-back" type="button" aria-label="Quay lại">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </button>
+        <div>
+          <h1 id="ed-title">Tạo bài viết mới</h1>
+          <div class="desc">Điền thông tin rồi lưu — bài hiển thị sau khi xuất bản &amp; push code.</div>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn btn--ghost" id="btn-cancel" type="button">Huỷ</button>
+        <button class="btn btn--brand" id="btn-save" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lưu &amp; xuất bản
+        </button>
+      </div>
+
+      <form id="form" class="editor" onsubmit="return false">
+        <input type="hidden" id="f-file">
+        <input type="hidden" id="f-pdfFile">
+        <input type="hidden" id="f-originalFile">
+        <input type="hidden" id="f-type" value="none">
+        <input type="hidden" id="f-category" value="">
+
+        <!-- left column -->
+        <div class="col">
+          <div>
+            <label class="lab" for="f-title">Tiêu đề bài viết</label>
+            <input class="fld" type="text" id="f-title" maxlength="200" placeholder="VD: Bộ lọc nâng cao cho báo cáo tồn kho">
+          </div>
+          <div>
+            <label class="lab" for="f-summary">Mô tả ngắn</label>
+            <textarea class="fld" id="f-summary" rows="2" maxlength="400" placeholder="Một câu tóm tắt hiển thị trên thẻ ở trang danh sách…"></textarea>
+          </div>
+
+          <div>
+            <label class="lab">Loại nội dung đính kèm</label>
+            <div class="typebtns" id="typebtns">
+              <button type="button" class="typebtn" data-type="none">Chỉ thông báo</button>
+              <button type="button" class="typebtn" data-type="video">Video</button>
+              <button type="button" class="typebtn" data-type="pdf">PDF</button>
+              <button type="button" class="typebtn" data-type="slide">Slide</button>
+            </div>
+          </div>
+
+          <div id="sec-video" hidden>
+            <label class="lab" for="f-youtube">Link video YouTube <span class="hint">(nên để chế độ Không công khai)</span></label>
+            <div class="yt-wrap">
+              <svg viewBox="0 0 24 24" fill="#D81B60"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5ZM9.8 15.3V8.7l5.7 3.3Z"/></svg>
+              <input type="text" id="f-youtube" placeholder="https://youtu.be/xxxxxxxxxxx">
+            </div>
+          </div>
+
+          <div id="sec-doc" hidden>
+            <label class="lab">Tệp đính kèm <span class="hint">(ưu tiên PDF cho khung xem · ≤ 25 MB)</span></label>
+            <label class="drop" for="f-pdf">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 9l5-5 5 5M12 4v12"/></svg></span>
+              <span class="t">Bấm để chọn tệp PDF</span>
+              <span class="s">File rất nặng nên dùng link Google Drive trong nội dung.</span>
+              <input type="file" id="f-pdf" accept="application/pdf,.pdf">
+            </label>
+            <div class="cur" id="cur-pdf"></div>
+            <div style="margin-top:14px">
+              <label class="lab" for="f-original">File gốc cho nút tải về <span class="hint">(tuỳ chọn — Word/PPT/Excel)</span></label>
+              <label class="drop" for="f-original" style="padding:14px">
+                <span class="t">Bấm để chọn file gốc</span>
+                <input type="file" id="f-original" accept=".doc,.docx,.ppt,.pptx,.xls,.xlsx,.pdf">
+              </label>
+              <div class="cur" id="cur-original"></div>
+            </div>
+            <div style="margin-top:14px">
+              <label class="lab" for="f-origlabel">Nhãn nút tải file gốc</label>
+              <input class="fld" type="text" id="f-origlabel" placeholder="Tải tài liệu PDF">
+            </div>
+          </div>
+
+          <div>
+            <label class="lab" for="f-body">Nội dung chi tiết</label>
+            <div class="ed-box">
+              <div class="ed-toolbar">
+                <button type="button" data-md="bold" title="In đậm">B</button>
+                <button type="button" class="i" data-md="italic" title="In nghiêng">I</button>
+                <button type="button" data-md="h2" title="Tiêu đề mục">H2</button>
+                <button type="button" data-md="list" title="Danh sách">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
+                </button>
+              </div>
+              <textarea id="f-body" placeholder="Viết changelog: Tính năng mới, Cải tiến, Sửa lỗi… (hỗ trợ Markdown)"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- right column -->
+        <div class="col right">
+          <div class="scard">
+            <div class="h">Phân loại</div>
+            <label class="sublab">Phân loại trang <span class="hint" style="color:var(--pink)">* bắt buộc</span></label>
+            <div class="typebtns" id="catbtns" style="margin-bottom:16px">
+              <button type="button" class="typebtn" data-cat="cap-nhat">Cập nhật</button>
+              <button type="button" class="typebtn" data-cat="huong-dan">Hướng dẫn</button>
+            </div>
+            <label class="sublab" for="f-date">Ngày đăng</label>
+            <input class="fld mini" type="date" id="f-date" style="margin-bottom:16px">
+            <label class="sublab" for="f-module">Module ERP</label>
+            <div class="selwrap">
+              <select class="fld" id="f-module"></select>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#A2929A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <label class="sublab" for="f-version">Phiên bản</label>
+            <input class="fld mini" type="text" id="f-version" placeholder="v2.4.0" style="margin-bottom:16px">
+            <label class="sublab" for="f-scope">Phạm vi</label>
+            <input class="fld mini" type="text" id="f-scope" placeholder="Toàn hệ thống">
+          </div>
+
+          <div class="scard">
+            <div class="h">Tuỳ chọn hiển thị</div>
+            <label class="opt">
+              <input type="checkbox" id="f-isnew">
+              <span class="switch"><span class="track"></span><span class="knob"></span></span>
+              <span><span class="ot">Gắn nhãn “Mới”</span><br><span class="os">Hiển thị badge nổi bật trên thẻ</span></span>
+            </label>
+            <label class="opt">
+              <input type="checkbox" id="f-pinned">
+              <span class="switch"><span class="track"></span><span class="knob"></span></span>
+              <span><span class="ot">Ghim lên đầu</span><br><span class="os">Đưa bài lên đầu danh sách</span></span>
+            </label>
+            <label class="opt">
+              <input type="checkbox" id="f-pub">
+              <span class="switch"><span class="track"></span><span class="knob"></span></span>
+              <span><span class="ot">Xuất bản ngay</span><br><span class="os">Tắt để lưu thành bản nháp</span></span>
+            </label>
+          </div>
+
+          <div class="note">
+            <div class="t">Sau khi lưu</div>
+            <div class="s">Bài chỉ lên mạng sau khi bạn <b>git push</b> — hệ thống tự build &amp; cập nhật trang sau ~1 phút.</div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+
+const MODULE_COLORS = {
+  'Thông báo chung':'#8A1538','Kho hàng':'#0F8B7E','Sản xuất':'#C07A1E','Bán hàng':'#D81B60',
+  'Mua hàng':'#4F46E5','Nhân sự':'#7C3AED','Kế toán':'#0891B2','Báo cáo':'#0E7CC4','Hệ thống':'#5B6470'
+};
+const MODULE_LIST = Object.keys(MODULE_COLORS);
+const PALETTE = ['#0F8B7E','#C07A1E','#D81B60','#0E7CC4','#4F46E5','#7C3AED','#0891B2','#B45309','#0D9488','#9333EA'];
+function moduleColor(name){
+  name=String(name||'').trim(); if(!name) return '#8A1538';
+  if(MODULE_COLORS[name]) return MODULE_COLORS[name];
+  let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))>>>0;
+  return PALETTE[h%PALETTE.length];
+}
+function hexA(hex,a){ const n=parseInt(hex.replace('#',''),16); return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'; }
+const TYPE = {
+  video:{label:'Video hướng dẫn',glyph:'▶',color:'#D81B60'},
+  pdf:{label:'Tài liệu PDF',glyph:'PDF',color:'#C07A1E'},
+  slide:{label:'Slide trình bày',glyph:'▤',color:'#B45309'},
+  none:{label:'Thông báo',glyph:'TB',color:'#16A34A'}
+};
+function typeOf(t){ return TYPE[t] || TYPE.none; }
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function toast(msg, type='ok', html=false){
+  const box = $('#toast');
+  box.innerHTML = '<div class="toast toast--'+type+'">'+(html?msg:esc(msg))+'</div>';
+  box.style.display='block'; clearTimeout(toast._t);
+  toast._t=setTimeout(()=>{ box.style.display='none'; }, type==='err'?7000:5000);
+}
+function todayISO(){ const d=new Date(),p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+function ytId(v){ v=String(v||'').trim(); const m=v.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/); if(m) return m[1]; if(/^[A-Za-z0-9_-]{11}$/.test(v)) return v; return v; }
+function fmtDate(s){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||'')); return m? m[3]+'/'+m[2]+'/'+m[1] : esc(s); }
+
+/* ---- Views ---- */
+function showList(){ $('#view-list').hidden=false; $('#view-edit').hidden=true; $('#nav-list').classList.add('is-active'); $('#nav-new').classList.remove('is-active'); window.scrollTo(0,0); }
+function showEdit(){ $('#view-list').hidden=true; $('#view-edit').hidden=false; $('#nav-list').classList.remove('is-active'); $('#nav-new').classList.add('is-active'); window.scrollTo(0,0); }
+
+/* ---- List ---- */
+async function loadList(){
+  const list=$('#list'); list.innerHTML='<div class="loading">Đang tải…</div>';
+  try{
+    const r=await fetch('/api/posts'); const j=await r.json();
+    if(!j.ok) throw new Error(j.error||'Lỗi tải danh sách');
+    render(j.posts||[]);
+  }catch(e){ list.innerHTML='<div class="empty">Không tải được danh sách: '+esc(e.message)+'</div>'; }
+}
+function render(posts){
+  const total=posts.length;
+  const pub=posts.filter(p=>!p.draft).length;
+  const draft=posts.filter(p=>p.draft).length;
+  const nw=posts.filter(p=>p.isNew).length;
+  $('#nav-count').textContent=total; $('#st-total').textContent=total;
+  $('#st-pub').textContent=pub; $('#st-draft').textContent=draft; $('#st-new').textContent=nw;
+
+  if(!total){ $('#list').innerHTML='<div class="empty">Chưa có bài viết nào. Bấm “Tạo bài mới” để bắt đầu.</div>'; return; }
+  let rows='';
+  for(const p of posts){
+    const t=typeOf(p.mediaType); const mc=moduleColor(p.module);
+    rows+='<tr>'
+      +'<td><div class="ti">'
+        +'<span class="tico" style="background:'+hexA(t.color,.10)+';color:'+t.color+'">'+t.glyph+'</span>'
+        +'<div style="min-width:0"><div class="tt">'+esc(p.title)+'</div><div class="ts">'+esc(catLabel(p.category))+' · '+esc(t.label)+(p.pinned?' · Ghim':'')+'</div></div>'
+      +'</div></td>'
+      +'<td>'+(p.module?'<span class="pill" style="background:'+hexA(mc,.10)+';color:'+mc+'"><span class="dot" style="background:'+mc+'"></span>'+esc(p.module)+'</span>':'<span class="ts">—</span>')+'</td>'
+      +'<td><span class="ver">'+(esc(p.version)||'—')+'</span></td>'
+      +'<td>'+(p.draft?'<span class="status status--draft">Bản nháp</span>':'<span class="status status--pub">Đã xuất bản</span>')+'</td>'
+      +'<td class="td-date">'+fmtDate(p.date)+'</td>'
+      +'<td><div class="acts">'
+        +'<button class="iconbtn" title="Sửa" data-edit="'+esc(p.file)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>'
+        +'<button class="iconbtn iconbtn--del" title="Xoá" data-del="'+esc(p.file)+'" data-title="'+esc(p.title)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>'
+      +'</div></td>'
+    +'</tr>';
+  }
+  $('#list').innerHTML='<table><thead><tr>'
+    +'<th>Tiêu đề</th><th>Module</th><th>Phiên bản</th><th>Trạng thái</th><th>Ngày</th><th class="right">Thao tác</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+/* ---- Module select ---- */
+function fillModules(selected){
+  const sel=$('#f-module'); const list=MODULE_LIST.slice();
+  if(selected && list.indexOf(selected)===-1) list.push(selected);
+  sel.innerHTML=list.map(m=>'<option'+(m===selected?' selected':'')+'>'+esc(m)+'</option>').join('');
+}
+
+/* ---- Type sections ---- */
+function setType(t){
+  $('#f-type').value=t;
+  document.querySelectorAll('#typebtns .typebtn').forEach(b=>b.classList.toggle('is-active', b.getAttribute('data-type')===t));
+  $('#sec-video').hidden = t!=='video';
+  $('#sec-doc').hidden = !(t==='pdf'||t==='slide');
+}
+
+/* ---- Phân loại trang (Cập nhật / Hướng dẫn) — bắt buộc chọn ---- */
+function setCategory(c){
+  $('#f-category').value = c || '';
+  document.querySelectorAll('#catbtns .typebtn').forEach(b=>b.classList.toggle('is-active', b.getAttribute('data-cat')===c));
+}
+function catLabel(c){ return c==='huong-dan' ? 'Hướng dẫn' : (c==='cap-nhat' ? 'Cập nhật' : '⚠ Chưa phân loại'); }
+
+/* ---- Form ---- */
+function resetForm(){
+  $('#f-file').value=''; $('#f-pdfFile').value=''; $('#f-originalFile').value='';
+  $('#f-title').value=''; $('#f-summary').value=''; $('#f-date').value=todayISO();
+  $('#f-youtube').value=''; $('#f-origlabel').value=''; $('#f-version').value=''; $('#f-scope').value='Toàn hệ thống';
+  $('#f-pdf').value=''; $('#f-original').value=''; $('#cur-pdf').textContent=''; $('#cur-original').textContent='';
+  $('#f-body').value='';
+  $('#f-isnew').checked=true; $('#f-pinned').checked=false; $('#f-pub').checked=true;
+  fillModules('Thông báo chung'); setType('none'); setCategory('');
+}
+function newPost(){ resetForm(); $('#ed-title').textContent='Tạo bài viết mới'; showEdit(); $('#f-title').focus(); }
+async function editPost(file){
+  try{
+    const r=await fetch('/api/post?file='+encodeURIComponent(file)); const j=await r.json();
+    if(!j.ok) throw new Error(j.error||'Không tải được bài viết');
+    const p=j.post; resetForm();
+    $('#ed-title').textContent='Chỉnh sửa bài viết';
+    $('#f-file').value=p.file; $('#f-title').value=p.title; $('#f-summary').value=p.summary;
+    $('#f-date').value=p.date; $('#f-youtube').value=p.youtubeId; $('#f-origlabel').value=p.originalLabel;
+    $('#f-pdfFile').value=p.pdfFile; $('#f-originalFile').value=p.originalFile;
+    $('#f-version').value=p.version||''; $('#f-scope').value=p.scope||'Toàn hệ thống';
+    $('#f-body').value=p.body;
+    $('#f-isnew').checked=!!p.isNew; $('#f-pinned').checked=!!p.pinned; $('#f-pub').checked=!p.draft;
+    fillModules(p.module||'Thông báo chung'); setCategory(p.category||'');
+    if(p.pdfFile) $('#cur-pdf').innerHTML='File hiện tại: <b>'+esc(p.pdfFile.split('/').pop())+'</b> (để trống nếu giữ nguyên)';
+    if(p.originalFile) $('#cur-original').innerHTML='File hiện tại: <b>'+esc(p.originalFile.split('/').pop())+'</b>';
+    setType(p.mediaType||'none');
+    showEdit(); $('#f-title').focus();
+  }catch(e){ toast(e.message,'err'); }
+}
+function readFileInput(el){
+  return new Promise((resolve,reject)=>{
+    const f=el.files && el.files[0]; if(!f) return resolve(null);
+    const fr=new FileReader();
+    fr.onload=()=>resolve({name:f.name,dataUrl:fr.result});
+    fr.onerror=()=>reject(new Error('Không đọc được file: '+f.name));
+    fr.readAsDataURL(f);
+  });
+}
+async function submitForm(){
+  const save=$('#btn-save'); save.disabled=true; const old=save.innerHTML; save.textContent='Đang lưu…';
+  try{
+    const file=$('#f-file').value; const mediaType=$('#f-type').value;
+    if(!$('#f-title').value.trim()) throw new Error('Vui lòng nhập tiêu đề.');
+    const category=$('#f-category').value;
+    if(category!=='cap-nhat' && category!=='huong-dan'){
+      throw new Error('Vui lòng chọn phân loại trang: Cập nhật hoặc Hướng dẫn.');
+    }
+    const payload={
+      title:$('#f-title').value.trim(),
+      date:$('#f-date').value,
+      summary:$('#f-summary').value.trim(),
+      module:$('#f-module').value,
+      category,
+      version:$('#f-version').value.trim(),
+      isNew:$('#f-isnew').checked,
+      scope:$('#f-scope').value.trim()||'Toàn hệ thống',
+      mediaType,
+      youtubeId: mediaType==='video' ? ytId($('#f-youtube').value) : '',
+      pdfFile:$('#f-pdfFile').value,
+      originalFile:$('#f-originalFile').value,
+      originalLabel:$('#f-origlabel').value.trim(),
+      tags:[],
+      pinned:$('#f-pinned').checked,
+      draft:!$('#f-pub').checked,
+      body:$('#f-body').value,
+    };
+    if(mediaType==='pdf'||mediaType==='slide'){
+      payload.pdfUpload=await readFileInput($('#f-pdf'));
+      payload.originalUpload=await readFileInput($('#f-original'));
+    }
+    const url=file?('/api/post?file='+encodeURIComponent(file)):'/api/posts';
+    const method=file?'PUT':'POST';
+    const r=await fetch(url,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||'Lưu thất bại');
+    await loadList(); showList();
+    if(j.build && j.build.ok===false){
+      toast('Đã lưu file, nhưng build báo lỗi: '+esc(j.build.error),'warn',true);
+    }else{
+      const link=j.slug?' <a href="/bai-viet/'+encodeURIComponent(j.slug)+'/" target="_blank" rel="noopener">Xem bài ↗</a>':'';
+      toast((file?'Đã cập nhật bài viết.':'Đã thêm bài viết mới.')+link,'ok',true);
+    }
+  }catch(e){ toast(e.message,'err'); }
+  finally{ save.disabled=false; save.innerHTML=old; }
+}
+async function delPost(file,title){
+  if(!confirm('Xoá bài “'+title+'”?\n\nFile bài viết và thư mục đính kèm sẽ bị xoá. Không thể hoàn tác.')) return;
+  try{
+    const r=await fetch('/api/post?file='+encodeURIComponent(file)+'&assets=1',{method:'DELETE'});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||'Xoá thất bại');
+    await loadList(); toast('Đã xoá bài viết.','ok');
+  }catch(e){ toast(e.message,'err'); }
+}
+
+/* ---- Markdown toolbar ---- */
+function wrapSel(before,after){
+  const ta=$('#f-body'); const s=ta.selectionStart, e=ta.selectionEnd; const v=ta.value;
+  const sel=v.slice(s,e)||'';
+  ta.value=v.slice(0,s)+before+sel+after+v.slice(e);
+  ta.focus(); const pos=s+before.length+sel.length; ta.setSelectionRange(pos,pos);
+}
+function linePrefix(pre){
+  const ta=$('#f-body'); const s=ta.selectionStart; const v=ta.value;
+  const ls=v.lastIndexOf('\n',s-1)+1;
+  ta.value=v.slice(0,ls)+pre+v.slice(ls); ta.focus();
+}
+
+/* ---- Events ---- */
+$('#nav-list').addEventListener('click', showList);
+$('#nav-new').addEventListener('click', newPost);
+$('#btn-new2').addEventListener('click', newPost);
+$('#btn-back').addEventListener('click', showList);
+$('#btn-cancel').addEventListener('click', showList);
+$('#btn-save').addEventListener('click', submitForm);
+document.querySelectorAll('#typebtns .typebtn').forEach(b=> b.addEventListener('click', ()=> setType(b.getAttribute('data-type'))));
+document.querySelectorAll('#catbtns .typebtn').forEach(b=> b.addEventListener('click', ()=> setCategory(b.getAttribute('data-cat'))));
+$('#f-pdf').addEventListener('change', e=>{ const f=e.target.files[0]; $('#cur-pdf').innerHTML = f?'Đã chọn: <b>'+esc(f.name)+'</b>':''; });
+$('#f-original').addEventListener('change', e=>{ const f=e.target.files[0]; $('#cur-original').innerHTML = f?'Đã chọn: <b>'+esc(f.name)+'</b>':''; });
+document.querySelectorAll('.ed-toolbar button').forEach(b=> b.addEventListener('click', ()=>{
+  const k=b.getAttribute('data-md');
+  if(k==='bold') wrapSel('**','**'); else if(k==='italic') wrapSel('*','*');
+  else if(k==='h2') linePrefix('## '); else if(k==='list') linePrefix('- ');
+}));
+$('#list').addEventListener('click', e=>{
+  const ed=e.target.closest('[data-edit]'); if(ed) return editPost(ed.getAttribute('data-edit'));
+  const dl=e.target.closest('[data-del]'); if(dl) return delPost(dl.getAttribute('data-del'), dl.getAttribute('data-title'));
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#view-edit').hidden) showList(); });
+
+fillModules('Thông báo chung');
+loadList();
+</script>
+</body>
+</html>

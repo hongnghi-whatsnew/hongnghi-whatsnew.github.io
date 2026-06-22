@@ -1,0 +1,56 @@
+# .github/workflows/deploy.yml
+# Tự động build và deploy lên GitHub Pages mỗi khi push lên nhánh main
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+  # Cho phép chạy tay từ tab Actions nếu cần
+  workflow_dispatch:
+
+# Quyền cần thiết để deploy lên Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Chỉ cho 1 lần deploy chạy cùng lúc, huỷ cái cũ nếu có cái mới
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 1. Lấy code từ repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Cài Node.js 20 (đúng .nvmrc của dự án)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. Build — không cần npm install vì zero-dependency
+      - name: Build
+        run: node build.mjs
+
+      # 4. Chuẩn bị thư mục dist/ cho Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      # 5. Deploy lên GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

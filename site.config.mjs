@@ -1,0 +1,18 @@
+// Cấu hình chung của trang. Sửa các giá trị bên dưới cho đúng công ty bạn.
+export const SITE = {
+  // Hiển thị trên thẻ tiêu đề trình duyệt.
+  title: 'Thông báo PM ERP',
+  // Câu giới thiệu ngắn ở trang chủ.
+  tagline:
+    'Cập nhật mỗi tuần. Bấm vào từng mục để xem hướng dẫn chi tiết bằng video, tài liệu hoặc slide.',
+  // Tên miền chính thức (dùng cho liên kết, sitemap, RSS).
+  // Đổi thành URL GitHub Pages thật khi deploy (vd: https://mdfhongnghi.github.io)
+  domain: 'https://mdfhongnghi.github.io',
+  // Tên công ty hiển thị ở chân trang.
+  company: 'Công ty MDF Hồng Nghi',
+  // Số phiên bản ERP hiện hành — hiện ở góc phải thanh tiêu đề (vd 'v2.4.0').
+  erpVersion: 'v2.4.0',
+  // Liên kết "Gửi yêu cầu hỗ trợ" ở trang chi tiết. Có thể là mailto: hoặc URL nội bộ.
+  // Để trống ('') nếu muốn ẩn ô hỗ trợ.
+  supportUrl: 'mailto:cntt@mdfhongnghi.vn',
+};

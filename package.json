@@ -1,0 +1,16 @@
+{
+  "name": "mdf-whatsnew",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Trang thong bao tinh nang moi cua PM ERP — MDF Gia Phuc / Hong Nghia (static site, zero dependency)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node serve.mjs --watch",
+    "serve": "node serve.mjs",
+    "new-post": "node scripts/new-post.mjs"
+  }
+}
