@@ -24,3 +24,5 @@ Thumbs.db
 # deploy artifacts created by scripts/deploy.ps1
 *_backup_*/
 *_staging_*/
+.claude/
+.claude/
