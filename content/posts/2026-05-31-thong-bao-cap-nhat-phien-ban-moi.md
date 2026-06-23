@@ -1,7 +1,8 @@
 ---
 title: "THÔNG BÁO CẬP NHẬT PHIÊN BẢN MỚI"
 date: 2026-05-31
-summary: "Thêm phần thông báo yêu cầu duyệt giá trực tiếp trên PM"
+summary: "Thông báo yêu cầu duyệt giá trực tiếp trên PM
+Thay đổi quy trình duyệt giá"
 module: "Thông báo chung"
 category: cap-nhat
 version: "v26.05.31"
@@ -10,6 +11,7 @@ scope: "Toàn hệ thống"
 mediaType: video
 youtubeId: "kCBM8m8L8vc"
 tags: []
+pinImportant: false
 pinned: false
 draft: false
 ---
@@ -26,4 +28,4 @@ draft: false
 * Tối ưu tốc độ phản hồi
 * (Phiên bản này cập nhật lại toàn bộ nền tảng theo phát hành mới nhất từ nhà cung cấp nên có thể phát sinh một số lỗi, Trường hợp gặp lỗi mọi người nhắn IT sẽ xử lý nhé)
 
-Chúc mọi người tuần mới tốt lành
+Chúc mọi người 1 ngày mới tốt lành !

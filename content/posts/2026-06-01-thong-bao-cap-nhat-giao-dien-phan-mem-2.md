@@ -26,8 +26,6 @@ Nhằm nâng cao trải nghiệm sử dụng và tối ưu hiệu suất làm vi
 ⚠️ Lưu ý:
 Sau khi cập nhật, một số vị trí chức năng có thể được sắp xếp lại để phù hợp với giao diện mới. Người dùng vui lòng kiểm tra và làm quen trong quá trình sử dụng.
 
-Xin cảm ơn Quý Anh/Chị đã đồng hành và đóng góp ý kiến để hệ thống ngày càng hoàn thiện hơn.
-
 
 ![image](/uploads/image.png)
 
@@ -35,4 +33,7 @@ Xin cảm ơn Quý Anh/Chị đã đồng hành và đóng góp ý kiến để 
 
 ![image](/uploads/image-2.png)
 
-Chúc mọi người tuần mới tốt lành
+
+
+Xin cảm ơn mọi người đã luôn đồng hành và đóng góp ý kiến để hệ thống ngày càng hoàn thiện hơn.
+Chúc mọi người một ngày mới tốt lành !
