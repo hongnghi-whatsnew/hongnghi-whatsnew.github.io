@@ -370,9 +370,14 @@
               <span><span class="ot">Gắn nhãn “Mới”</span><br><span class="os">Hiển thị badge nổi bật trên thẻ</span></span>
             </label>
             <label class="opt">
+              <input type="checkbox" id="f-pin-important">
+              <span class="switch"><span class="track"></span><span class="knob"></span></span>
+              <span><span class="ot">Ghim quan trọng</span><br><span class="os">Đưa lên khu nổi bật (banner) đầu trang — chỉ 1 bài</span></span>
+            </label>
+            <label class="opt">
               <input type="checkbox" id="f-pinned">
               <span class="switch"><span class="track"></span><span class="knob"></span></span>
-              <span><span class="ot">Ghim lên đầu</span><br><span class="os">Đưa bài lên đầu danh sách</span></span>
+              <span><span class="ot">Ghim</span><br><span class="os">Đưa bài vào mục “Ghim” ở trang chủ</span></span>
             </label>
             <label class="opt">
               <input type="checkbox" id="f-pub">
@@ -456,7 +461,7 @@ function render(posts){
     rows+='<tr>'
       +'<td><div class="ti">'
         +'<span class="tico" style="background:'+hexA(t.color,.10)+';color:'+t.color+'">'+t.glyph+'</span>'
-        +'<div style="min-width:0"><div class="tt">'+esc(p.title)+'</div><div class="ts">'+esc(catLabel(p.category))+' · '+esc(t.label)+(p.pinned?' · Ghim':'')+'</div></div>'
+        +'<div style="min-width:0"><div class="tt">'+esc(p.title)+'</div><div class="ts">'+esc(catLabel(p.category))+' · '+esc(t.label)+(p.pinImportant?' · 📌 Ghim quan trọng':(p.pinned?' · Ghim':''))+'</div></div>'
       +'</div></td>'
       +'<td>'+(p.module?'<span class="pill" style="background:'+hexA(mc,.10)+';color:'+mc+'"><span class="dot" style="background:'+mc+'"></span>'+esc(p.module)+'</span>':'<span class="ts">—</span>')+'</td>'
       +'<td><span class="ver">'+(esc(p.version)||'—')+'</span></td>'
@@ -503,7 +508,7 @@ function resetForm(){
   $('#f-pdf').value=''; $('#f-original').value=''; $('#cur-pdf').textContent=''; $('#cur-original').textContent='';
   const fImg=$('#f-image'); if(fImg) fImg.value='';
   $('#f-body').value='';
-  $('#f-isnew').checked=true; $('#f-pinned').checked=false; $('#f-pub').checked=true;
+  $('#f-isnew').checked=true; $('#f-pin-important').checked=false; $('#f-pinned').checked=false; $('#f-pub').checked=true;
   fillModules('Thông báo chung'); setType('none'); setCategory('');
 }
 function newPost(){ resetForm(); $('#ed-title').textContent='Tạo bài viết mới'; showEdit(); $('#f-title').focus(); }
@@ -518,7 +523,7 @@ async function editPost(file){
     $('#f-pdfFile').value=p.pdfFile; $('#f-originalFile').value=p.originalFile;
     $('#f-version').value=p.version||''; $('#f-scope').value=p.scope||'Toàn hệ thống';
     $('#f-body').value=p.body;
-    $('#f-isnew').checked=!!p.isNew; $('#f-pinned').checked=!!p.pinned; $('#f-pub').checked=!p.draft;
+    $('#f-isnew').checked=!!p.isNew; $('#f-pin-important').checked=!!p.pinImportant; $('#f-pinned').checked=!!p.pinned; $('#f-pub').checked=!p.draft;
     fillModules(p.module||'Thông báo chung'); setCategory(p.category||'');
     if(p.pdfFile) $('#cur-pdf').innerHTML='File hiện tại: <b>'+esc(p.pdfFile.split('/').pop())+'</b> (để trống nếu giữ nguyên)';
     if(p.originalFile) $('#cur-original').innerHTML='File hiện tại: <b>'+esc(p.originalFile.split('/').pop())+'</b>';
@@ -559,6 +564,7 @@ async function submitForm(){
       originalFile:$('#f-originalFile').value,
       originalLabel:$('#f-origlabel').value.trim(),
       tags:[],
+      pinImportant:$('#f-pin-important').checked,
       pinned:$('#f-pinned').checked,
       draft:!$('#f-pub').checked,
       body:$('#f-body').value,
@@ -576,7 +582,8 @@ async function submitForm(){
       toast('Đã lưu file, nhưng build báo lỗi: '+esc(j.build.error),'warn',true);
     }else{
       const link=j.slug?' <a href="/bai-viet/'+encodeURIComponent(j.slug)+'/" target="_blank" rel="noopener">Xem bài ↗</a>':'';
-      toast((file?'Đã cập nhật bài viết.':'Đã thêm bài viết mới.')+link,'ok',true);
+      const demo=(j.demoted&&j.demoted.length)?' Đã chuyển '+j.demoted.length+' bài “ghim quan trọng” cũ về ghim thường.':'';
+      toast((file?'Đã cập nhật bài viết.':'Đã thêm bài viết mới.')+demo+link,'ok',true);
     }
   }catch(e){ toast(e.message,'err'); }
   finally{ save.disabled=false; save.innerHTML=old; }
@@ -641,6 +648,9 @@ $('#btn-new2').addEventListener('click', newPost);
 $('#btn-back').addEventListener('click', showList);
 $('#btn-cancel').addEventListener('click', showList);
 $('#btn-save').addEventListener('click', submitForm);
+// "Ghim quan trọng" và "Ghim" loại trừ nhau — mỗi bài chỉ vào 1 khu trên trang chủ.
+$('#f-pin-important').addEventListener('change', e=>{ if(e.target.checked) $('#f-pinned').checked=false; });
+$('#f-pinned').addEventListener('change', e=>{ if(e.target.checked) $('#f-pin-important').checked=false; });
 document.querySelectorAll('#typebtns .typebtn').forEach(b=> b.addEventListener('click', ()=> setType(b.getAttribute('data-type'))));
 document.querySelectorAll('#catbtns .typebtn').forEach(b=> b.addEventListener('click', ()=> setCategory(b.getAttribute('data-cat'))));
 $('#f-pdf').addEventListener('change', e=>{ const f=e.target.files[0]; $('#cur-pdf').innerHTML = f?'Đã chọn: <b>'+esc(f.name)+'</b>':''; });

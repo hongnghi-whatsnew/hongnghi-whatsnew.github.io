@@ -22,7 +22,10 @@ originalFile: ""
 # ^ (tuỳ chọn) file gốc Word/PowerPoint cho nút tải về. Vd: /posts/<ten-thu-muc>/goc.docx
 originalLabel: "Tải file gốc"
 tags: []
+pinImportant: false
+# ^ true = "Ghim quan trọng": đưa bài lên BANNER nổi bật đầu trang chủ. Chỉ 1 bài; gắn bài mới sẽ tự hạ bài cũ về ghim thường.
 pinned: false
+# ^ true = "Ghim": đưa bài vào mục "Các nội dung đang ghim" ở trang chủ.
 draft: false
 ---
 

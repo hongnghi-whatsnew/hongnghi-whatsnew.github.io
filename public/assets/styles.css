@@ -232,7 +232,6 @@ main { display: block; }
 .search input:focus-visible { outline: none; border-radius: 0; }
 .chips { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .controls-modules { display: flex; gap: 8px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
-.controls-modules .label { font-size: 12.5px; font-weight: 600; color: var(--faint); margin-right: 2px; }
 
 .chip {
   display: inline-flex; align-items: center; gap: 7px; padding: 9px 15px; border-radius: 10px;
@@ -462,8 +461,6 @@ main { display: block; }
   background: #F4E7EC; color: var(--brand); font-size: 12px; font-weight: 700;
 }
 .internal-badge svg { width: 13px; height: 13px; }
-.footer-rss { font-size: 12px; font-weight: 700; letter-spacing: .5px; color: var(--faint); border: 1px solid var(--line-3); padding: 5px 11px; border-radius: 999px; }
-.footer-rss:hover { color: var(--brand); border-color: #E7C9D4; }
 
 /* ===================== 404 ===================== */
 .notfound { text-align: center; padding: 80px 0; }

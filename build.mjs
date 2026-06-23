@@ -81,9 +81,11 @@ async function readPosts() {
     }
     posts.push(post);
   }
+  // Ưu tiên: ghim quan trọng > ghim thường > còn lại; trong cùng nhóm thì mới nhất trước.
+  const pinRank = (p) => (p.pinImportant ? 2 : 0) + (p.pinned ? 1 : 0);
   posts.sort(
     (a, b) =>
-      (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+      pinRank(b) - pinRank(a) ||
       parseLocalDate(b.date) - parseLocalDate(a.date),
   );
   return posts;
@@ -174,4 +176,4 @@ if (isMain) {
     process.exit(1);
   });
 }
-// build entrypoint (routes: / , /cap-nhat/ , /huong-dan/)
+// build entrypoint (routes: / , /cap-nhat/ , /huong-dan/) — sắp xếp: ghim quan trọng > ghim > mới nhất

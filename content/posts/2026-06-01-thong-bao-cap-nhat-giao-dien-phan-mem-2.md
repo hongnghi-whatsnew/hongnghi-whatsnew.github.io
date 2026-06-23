@@ -9,6 +9,7 @@ isNew: true
 scope: "Toàn hệ thống"
 mediaType: none
 tags: []
+pinImportant: false
 pinned: false
 draft: false
 ---
