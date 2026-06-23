@@ -5,7 +5,7 @@ summary: "Cập nhật giao diện mới cho phần mềm"
 module: "Thông báo chung"
 category: cap-nhat
 version: "v26.06.01"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 mediaType: none
 tags: []

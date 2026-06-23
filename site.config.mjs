@@ -14,5 +14,5 @@ export const SITE = {
   erpVersion: 'v26.06',
   // Liên kết "Gửi yêu cầu hỗ trợ" ở trang chi tiết. Có thể là mailto: hoặc URL nội bộ.
   // Để trống ('') nếu muốn ẩn ô hỗ trợ.
-  supportUrl: 'mailto: it.mdfhongnghi@gmail.com',
+  supportUrl: 'https://zalo.me/0857774776',
 };

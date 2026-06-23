@@ -5,7 +5,7 @@ summary: "Hỗ trợ kế toán trong việc lấy các giao dịch nhanh từ n
 module: "Kế toán"
 category: huong-dan
 version: "v26.06.01"
-isNew: true
+isNew: false
 scope: "Phòng Kế Toán"
 mediaType: none
 tags: []

@@ -1,12 +1,11 @@
 ---
 title: "THÔNG BÁO CẬP NHẬT PHIÊN BẢN MỚI"
 date: 2026-05-31
-summary: "Thông báo yêu cầu duyệt giá trực tiếp trên PM
-Thay đổi quy trình duyệt giá"
+summary: "'Thông báo yêu cầu duyệt giá trực tiếp trên PM"
 module: "Thông báo chung"
 category: cap-nhat
 version: "v26.05.31"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 mediaType: video
 youtubeId: "kCBM8m8L8vc"
