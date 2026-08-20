@@ -169,7 +169,7 @@ main { display: block; }
 }
 .featured-date { font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, .72); }
 .featured h2 {
-  margin: 0 0 12px; font-size: clamp(22px, 3.4vw, 29px); line-height: 1.2; font-weight: 800;
+  margin: 0 0 12px; font-size: clamp(22px, 3.4vw, 29px); line-height: 1.32; font-weight: 800;
   letter-spacing: -.4px; color: #fff;
 }
 .featured p { margin: 0 0 26px; font-size: 15.5px; line-height: 1.6; color: rgba(255, 255, 255, .82); max-width: 560px; }
