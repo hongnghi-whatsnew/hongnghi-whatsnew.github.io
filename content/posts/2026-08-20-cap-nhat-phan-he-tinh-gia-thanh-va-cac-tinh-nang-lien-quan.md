@@ -4,9 +4,10 @@ date: 2026-08-20
 summary: "Phần mềm được cập nhật và cải tiến phân hệ Tính giá thành, bổ sung các chức năng hỗ trợ quá trình tập hợp, phân bổ và theo dõi chi phí phục vụ công tác tính giá thành."
 module: "Kế toán"
 category: cap-nhat
-version: "v26.08"
+version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
+department: "Phòng Kế toán"
 mediaType: none
 tags: []
 pinImportant: true

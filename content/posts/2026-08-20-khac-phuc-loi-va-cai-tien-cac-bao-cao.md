@@ -4,9 +4,10 @@ date: 2026-08-20
 summary: "Phần mềm đã thực hiện khắc phục một số lỗi và cải tiến các báo cáo nhằm nâng cao độ chính xác của dữ liệu hiển thị và giúp người dùng thuận tiện hơn trong quá trình tra cứu."
 module: "Báo cáo"
 category: cap-nhat
-version: "v26.08"
+version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
+department: "Toàn hệ thống"
 mediaType: none
 tags: []
 pinImportant: false

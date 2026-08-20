@@ -410,6 +410,9 @@ main { display: block; }
 .aside { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 96px; }
 .side-card { background: #fff; border: 1px solid var(--line-2); border-radius: 16px; padding: 18px; }
 .side-title { font-size: 12px; font-weight: 800; letter-spacing: .6px; color: var(--faint); text-transform: uppercase; margin-bottom: 14px; }
+.side-title-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.side-title-row .side-title { margin-bottom: 0; }
+.side-ver { font-weight: 800; color: var(--head); font-size: 14px; font-feature-settings: 'tnum'; }
 .dl-list { display: flex; flex-direction: column; gap: 10px; }
 .dl-row {
   display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--line-2); border-radius: 12px;

@@ -11,7 +11,7 @@ export const SITE = {
   // Tên công ty hiển thị ở chân trang.
   company: 'Công ty TNHH DV-TM-XNK Hồng Nghi',
   // Số phiên bản ERP hiện hành — hiện ở góc phải thanh tiêu đề (vd 'v2.4.0').
-  erpVersion: 'v26.08',
+  erpVersion: 'v1.3.0',
   // Liên kết "Gửi yêu cầu hỗ trợ" ở trang chi tiết. Có thể là mailto: hoặc URL nội bộ.
   // Để trống ('') nếu muốn ẩn ô hỗ trợ.
   supportUrl: 'https://zalo.me/0857774776',

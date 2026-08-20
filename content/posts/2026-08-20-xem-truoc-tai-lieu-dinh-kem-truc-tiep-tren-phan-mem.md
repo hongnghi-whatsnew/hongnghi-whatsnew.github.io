@@ -4,9 +4,10 @@ date: 2026-08-20
 summary: "Phần mềm bổ sung chức năng xem trước tài liệu đính kèm trực tiếp trên màn hình, giúp người dùng kiểm tra nội dung tài liệu mà không cần tải tệp về máy."
 module: "Thông báo chung"
 category: cap-nhat
-version: "v26.08"
+version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
+department: "Phòng Kinh Doanh"
 mediaType: none
 tags: []
 pinImportant: false

@@ -12,6 +12,8 @@ isNew: true
 # ^ true = hiện nhãn "MỚI" nổi bật. Bỏ dòng này thì hệ thống tự bật trong 21 ngày đầu.
 scope: "Toàn hệ thống"
 # ^ Phạm vi ảnh hưởng, hiển thị ở khung "Thông tin phiên bản".
+department: ""
+# ^ Yêu cầu từ (phòng ban đề xuất tính năng), hiển thị ở khung "Thông tin phiên bản". Để trống "" nếu không có.
 mediaType: none
 # mediaType nhận 1 trong 4 giá trị: none | video | pdf | slide
 youtubeId: ""

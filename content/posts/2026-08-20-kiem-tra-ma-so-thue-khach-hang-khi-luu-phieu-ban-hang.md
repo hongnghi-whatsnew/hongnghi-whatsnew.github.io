@@ -4,9 +4,10 @@ date: 2026-08-20
 summary: "Chức năng giúp người dùng chủ động phát hiện trường hợp mã số thuế của khách hàng đang ở trạng thái ngừng hoạt động, từ đó hạn chế việc lập và lưu chứng từ với thông tin khách hàng không còn phù hợp."
 module: "Bán hàng"
 category: cap-nhat
-version: "v26.08"
+version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
+department: "Phòng Kế toán"
 mediaType: none
 tags: []
 pinImportant: false

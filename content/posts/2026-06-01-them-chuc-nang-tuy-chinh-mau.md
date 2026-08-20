@@ -4,7 +4,7 @@ date: 2026-06-01
 summary: "Thêm nút chỉnh sửa màu sắc ở thanh Tiêu đề và Thanh menu"
 module: "Hệ thống"
 category: cap-nhat
-version: "v26.06.01"
+version: "v1.3.0"
 isNew: false
 scope: "Toàn hệ thống"
 mediaType: none

@@ -4,7 +4,7 @@ date: 2026-08-20
 summary: "Các thay đổi tập trung vào giao diện màu sắc, chế độ sáng/tối, thanh menu, tiêu đề màn hình và cách nhập khoảng thời gian trong các chức năng có sử dụng bộ lọc ngày."
 module: "Thông báo chung"
 category: huong-dan
-version: "v26.08"
+version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
 mediaType: none

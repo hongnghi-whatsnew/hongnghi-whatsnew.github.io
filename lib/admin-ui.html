@@ -359,7 +359,9 @@
             <label class="sublab" for="f-version">Phiên bản</label>
             <input class="fld mini" type="text" id="f-version" placeholder="v2.4.0" style="margin-bottom:16px">
             <label class="sublab" for="f-scope">Phạm vi</label>
-            <input class="fld mini" type="text" id="f-scope" placeholder="Toàn hệ thống">
+            <input class="fld mini" type="text" id="f-scope" placeholder="Toàn hệ thống" style="margin-bottom:16px">
+            <label class="sublab" for="f-department">Yêu cầu từ</label>
+            <input class="fld mini" type="text" id="f-department" placeholder="Vd: Phòng Kế toán">
           </div>
 
           <div class="scard">
@@ -504,7 +506,7 @@ function catLabel(c){ return c==='huong-dan' ? 'Hướng dẫn' : (c==='cap-nhat
 function resetForm(){
   $('#f-file').value=''; $('#f-pdfFile').value=''; $('#f-originalFile').value='';
   $('#f-title').value=''; $('#f-summary').value=''; $('#f-date').value=todayISO();
-  $('#f-youtube').value=''; $('#f-origlabel').value=''; $('#f-version').value=''; $('#f-scope').value='Toàn hệ thống';
+  $('#f-youtube').value=''; $('#f-origlabel').value=''; $('#f-version').value=''; $('#f-scope').value='Toàn hệ thống'; $('#f-department').value='';
   $('#f-pdf').value=''; $('#f-original').value=''; $('#cur-pdf').textContent=''; $('#cur-original').textContent='';
   const fImg=$('#f-image'); if(fImg) fImg.value='';
   $('#f-body').value='';
@@ -521,7 +523,7 @@ async function editPost(file){
     $('#f-file').value=p.file; $('#f-title').value=p.title; $('#f-summary').value=p.summary;
     $('#f-date').value=p.date; $('#f-youtube').value=p.youtubeId; $('#f-origlabel').value=p.originalLabel;
     $('#f-pdfFile').value=p.pdfFile; $('#f-originalFile').value=p.originalFile;
-    $('#f-version').value=p.version||''; $('#f-scope').value=p.scope||'Toàn hệ thống';
+    $('#f-version').value=p.version||''; $('#f-scope').value=p.scope||'Toàn hệ thống'; $('#f-department').value=p.department||'';
     $('#f-body').value=p.body;
     $('#f-isnew').checked=!!p.isNew; $('#f-pin-important').checked=!!p.pinImportant; $('#f-pinned').checked=!!p.pinned; $('#f-pub').checked=!p.draft;
     fillModules(p.module||'Thông báo chung'); setCategory(p.category||'');
@@ -558,6 +560,7 @@ async function submitForm(){
       version:$('#f-version').value.trim(),
       isNew:$('#f-isnew').checked,
       scope:$('#f-scope').value.trim()||'Toàn hệ thống',
+      department:$('#f-department').value.trim(),
       mediaType,
       youtubeId: mediaType==='video' ? ytId($('#f-youtube').value) : '',
       pdfFile:$('#f-pdfFile').value,
