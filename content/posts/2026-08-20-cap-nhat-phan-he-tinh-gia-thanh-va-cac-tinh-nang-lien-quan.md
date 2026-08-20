@@ -8,6 +8,7 @@ version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
 department: "Phòng Kế toán"
+cover: "/posts/2026-08-20-cap-nhat-phan-he-tinh-gia-thanh-va-cac-tinh-nang-lien-quan/cover.png"
 mediaType: none
 tags: []
 pinImportant: true
