@@ -136,6 +136,8 @@
   .drop input[type=file]{display:none}
   .cur{font-size:12.5px;color:var(--muted);margin-top:8px}
   .cur b{color:#3A1525}
+  .cover-preview{margin-top:12px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .cover-preview img{width:100%;max-height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--line2);background:#FBF7F9}
   .ed-toolbar{display:flex;gap:2px;padding:8px 10px;border-bottom:1px solid var(--line2);background:#FBF7F9}
   .ed-toolbar button{width:30px;height:30px;border-radius:7px;border:none;background:none;color:var(--muted);cursor:pointer;
                      font-family:inherit;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
@@ -266,6 +268,7 @@
         <input type="hidden" id="f-originalFile">
         <input type="hidden" id="f-type" value="none">
         <input type="hidden" id="f-category" value="">
+        <input type="hidden" id="f-cover-path">
 
         <!-- left column -->
         <div class="col">
@@ -276,6 +279,22 @@
           <div>
             <label class="lab" for="f-summary">Mô tả ngắn</label>
             <textarea class="fld" id="f-summary" rows="2" maxlength="400" placeholder="Một câu tóm tắt hiển thị trên thẻ ở trang danh sách…"></textarea>
+          </div>
+
+          <div>
+            <label class="lab">Ảnh bìa / banner <span class="hint">(hiển thị ở trang chủ · để trống sẽ dùng nền minh hoạ mặc định)</span></label>
+            <label class="drop" for="f-cover">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>
+              <span class="t">Bấm để chọn ảnh bìa</span>
+              <span class="s">Nên dùng ảnh ngang, tỉ lệ ~16:10, rộng ≥ 640px · PNG/JPG/WEBP · tối đa 15 MB.</span>
+              <input type="file" id="f-cover" accept="image/png,image/jpeg,image/webp,image/gif,image/avif">
+            </label>
+            <div class="cover-preview" id="cover-preview" hidden>
+              <img id="cover-img" alt="Xem trước ảnh bìa">
+              <button type="button" class="btn btn--ghost" id="btn-cover-remove">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Gỡ ảnh bìa
+              </button>
+            </div>
           </div>
 
           <div>
@@ -403,6 +422,14 @@
 <script>
 const $ = (s) => document.querySelector(s);
 
+/* ---- Ảnh bìa (banner) ---- */
+let coverUpload = null;   // {name,dataUrl} khi người dùng chọn ảnh mới
+let coverRemove = false;  // true khi người dùng bấm "Gỡ ảnh bìa"
+function showCoverPreview(src){
+  if(src){ $('#cover-img').src = src; $('#cover-preview').hidden = false; }
+  else { $('#cover-img').removeAttribute('src'); $('#cover-preview').hidden = true; }
+}
+
 const MODULE_COLORS = {
   'Thông báo chung':'#8A1538','Kho hàng':'#0F8B7E','Sản xuất':'#C07A1E','Bán hàng':'#D81B60',
   'Mua hàng':'#4F46E5','Nhân sự':'#7C3AED','Kế toán':'#0891B2','Báo cáo':'#0E7CC4','Hệ thống':'#5B6470'
@@ -508,6 +535,7 @@ function resetForm(){
   $('#f-title').value=''; $('#f-summary').value=''; $('#f-date').value=todayISO();
   $('#f-youtube').value=''; $('#f-origlabel').value=''; $('#f-version').value=''; $('#f-scope').value='Toàn hệ thống'; $('#f-department').value='';
   $('#f-pdf').value=''; $('#f-original').value=''; $('#cur-pdf').textContent=''; $('#cur-original').textContent='';
+  $('#f-cover-path').value=''; $('#f-cover').value=''; coverUpload=null; coverRemove=false; showCoverPreview('');
   const fImg=$('#f-image'); if(fImg) fImg.value='';
   $('#f-body').value='';
   $('#f-isnew').checked=true; $('#f-pin-important').checked=false; $('#f-pinned').checked=false; $('#f-pub').checked=true;
@@ -529,6 +557,8 @@ async function editPost(file){
     fillModules(p.module||'Thông báo chung'); setCategory(p.category||'');
     if(p.pdfFile) $('#cur-pdf').innerHTML='File hiện tại: <b>'+esc(p.pdfFile.split('/').pop())+'</b> (để trống nếu giữ nguyên)';
     if(p.originalFile) $('#cur-original').innerHTML='File hiện tại: <b>'+esc(p.originalFile.split('/').pop())+'</b>';
+    $('#f-cover-path').value = p.cover || ''; coverUpload=null; coverRemove=false;
+    showCoverPreview(p.cover || '');
     setType(p.mediaType||'none');
     showEdit(); $('#f-title').focus();
   }catch(e){ toast(e.message,'err'); }
@@ -571,6 +601,9 @@ async function submitForm(){
       pinned:$('#f-pinned').checked,
       draft:!$('#f-pub').checked,
       body:$('#f-body').value,
+      cover:$('#f-cover-path').value||'',
+      coverUpload:coverUpload,
+      coverRemove:coverRemove,
     };
     if(mediaType==='pdf'||mediaType==='slide'){
       payload.pdfUpload=await readFileInput($('#f-pdf'));
@@ -658,6 +691,19 @@ document.querySelectorAll('#typebtns .typebtn').forEach(b=> b.addEventListener('
 document.querySelectorAll('#catbtns .typebtn').forEach(b=> b.addEventListener('click', ()=> setCategory(b.getAttribute('data-cat'))));
 $('#f-pdf').addEventListener('change', e=>{ const f=e.target.files[0]; $('#cur-pdf').innerHTML = f?'Đã chọn: <b>'+esc(f.name)+'</b>':''; });
 $('#f-original').addEventListener('change', e=>{ const f=e.target.files[0]; $('#cur-original').innerHTML = f?'Đã chọn: <b>'+esc(f.name)+'</b>':''; });
+// Ảnh bìa: chọn ảnh -> xem trước + đánh dấu tải mới; "Gỡ ảnh bìa" -> xoá bìa khi lưu.
+$('#f-cover').addEventListener('change', async e=>{
+  const f=e.target.files && e.target.files[0]; if(!f) return;
+  if(!/^image\//.test(f.type||'')){ toast('Ảnh bìa phải là tệp ảnh (PNG, JPG, WEBP…).','err'); e.target.value=''; return; }
+  try{
+    coverUpload=await readFileInput($('#f-cover'));  // {name,dataUrl}
+    coverRemove=false;
+    showCoverPreview(coverUpload.dataUrl);
+  }catch(err){ toast(err.message,'err'); }
+});
+$('#btn-cover-remove').addEventListener('click', ()=>{
+  coverUpload=null; coverRemove=true; $('#f-cover-path').value=''; $('#f-cover').value=''; showCoverPreview('');
+});
 document.querySelectorAll('.ed-toolbar button').forEach(b=> b.addEventListener('click', ()=>{
   const k=b.getAttribute('data-md');
   if(k==='bold') wrapSel('**','**'); else if(k==='italic') wrapSel('*','*');

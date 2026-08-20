@@ -7,6 +7,7 @@ category: huong-dan
 version: "v1.3.0"
 isNew: true
 scope: "Toàn hệ thống"
+department: ""
 mediaType: none
 tags: []
 pinImportant: false
@@ -50,10 +51,6 @@ Chọn Từ ngày – Đến ngày.
 Nhập trực tiếp ngày trên ô nhập liệu.
 Dễ dàng điều chỉnh khoảng thời gian cần tra cứu.
 
-
-Xin cảm ơn mọi người đã luôn đồng hành và đóng góp ý kiến để hệ thống ngày càng hoàn thiện hơn.
-Chúc mọi người một ngày mới tốt lành !
-
 Cách nhập mới giúp giảm thao tác khi người dùng cần tìm kiếm dữ liệu theo một khoảng thời gian cụ thể.
 
 Lợi ích
@@ -62,3 +59,7 @@ Hỗ trợ sử dụng phần mềm trong cả môi trường sáng và tối.
 Giao diện gọn gàng, dễ thao tác hơn.
 Cải thiện tốc độ hiển thị.
 Nhập và lựa chọn khoảng thời gian nhanh hơn.
+
+
+Xin cảm ơn mọi người đã luôn đồng hành và đóng góp ý kiến để hệ thống ngày càng hoàn thiện hơn.
+Chúc mọi người một ngày mới tốt lành !

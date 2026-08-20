@@ -75,6 +75,13 @@ async function readPosts() {
     // Phân loại trang: "huong-dan" hoặc "cap-nhat" (mặc định cap-nhat nếu thiếu).
     post.category = post.category === 'huong-dan' ? 'huong-dan' : 'cap-nhat';
     validate(post);
+    // Ảnh bìa (banner) không bắt buộc — nếu trỏ tới file không có thì chỉ cảnh báo, không chặn build.
+    if (post.cover) {
+      const coverOnDisk = path.join(PUBLIC_DIR, String(post.cover).replace(/^\//, ''));
+      if (!existsSync(coverOnDisk)) {
+        console.warn(`  ⚠ ${file}: ảnh bìa không tồn tại: ${post.cover}`);
+      }
+    }
     if (post.draft === true) {
       console.log(`  • bỏ qua bản nháp: ${file}`);
       continue;

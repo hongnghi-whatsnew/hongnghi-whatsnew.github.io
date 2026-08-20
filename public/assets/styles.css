@@ -70,7 +70,7 @@ input::placeholder, textarea::placeholder { color: #A89DA4; }
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.header-inner { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+.header-inner { display: flex; align-items: center; gap: 16px; padding: 16px 0; }
 .brand { display: flex; align-items: center; gap: 13px; }
 .brand-badge {
   width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0;
@@ -117,7 +117,9 @@ input::placeholder, textarea::placeholder { color: #A89DA4; }
 
 /* ===================== Hero ===================== */
 main { display: block; }
-.page-home .wrap, .page-post .wrap { padding-top: 0; }
+/* Chỉ bỏ padding-top cho KHUNG NỘI DUNG trong <main> — không đụng tới header/footer
+   (vốn cũng dùng class .wrap) để header/footer canh giữa dọc được cân đối. */
+.page-home main > .wrap, .page-post main > .wrap { padding-top: 0; }
 .hero { padding: 40px 0 28px; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border-radius: 999px;
@@ -187,13 +189,21 @@ main { display: block; }
 .featured-media::before {
   content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(242, 216, 154, .10), transparent);
 }
+/* Ảnh bìa của banner "ghim quan trọng" */
+.featured-media.has-cover { background: #1A0A12; }
+.featured-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 0; }
+.featured-media.has-cover::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(20, 8, 14, .05), rgba(20, 8, 14, .38));
+}
 .featured-play {
+  position: relative; z-index: 2;
   width: 66px; height: 66px; border-radius: 50%; background: rgba(255, 255, 255, .95);
   display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px -6px rgba(0, 0, 0, .5);
 }
 .featured-play svg { width: 26px; height: 26px; color: var(--brand); }
 .featured-medialabel {
-  position: absolute; bottom: 12px; left: 14px; font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .85);
+  position: absolute; bottom: 12px; left: 14px; z-index: 2; font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .85);
 }
 
 /* ===================== Ghim (chỉ ở trang chủ) ===================== */
@@ -206,7 +216,7 @@ main { display: block; }
 
 /* ===================== Controls (search + filters) ===================== */
 .controls {
-  position: sticky; top: 73px; z-index: 20;
+  position: sticky; top: 77px; z-index: 20;
   background: rgba(246, 243, 242, .92);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   padding: 14px 0 16px; margin-bottom: 6px; border-bottom: 1px solid #EEE4E7;
@@ -269,20 +279,31 @@ main { display: block; }
 .card:hover .card-go { background: var(--brand); color: #fff; }
 .card-media {
   position: relative; height: 158px; display: flex; align-items: center; justify-content: center;
-  background: var(--mc-soft, #F6EAEF); border-bottom: 1px solid var(--mc-line, var(--line-2));
+  overflow: hidden;
+  /* Nền minh hoạ mặc định (khi bài chưa có ảnh bìa): gradient theo màu module + vệt sáng góc trên. */
+  background:
+    radial-gradient(120% 135% at 86% -20%, var(--mc-ghost, rgba(138, 21, 56, .2)), transparent 60%),
+    linear-gradient(155deg, var(--mc-soft, #F6EAEF), #FCFBFB 92%);
+  border-bottom: 1px solid var(--mc-line, var(--line-2));
+}
+/* Ảnh bìa (banner) phủ kín khung media */
+.card-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 0; }
+.card-media.has-cover::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(20, 8, 14, .04) 0%, rgba(20, 8, 14, .22) 100%);
 }
 .card-new {
-  position: absolute; top: 13px; left: 13px; display: inline-flex; align-items: center; gap: 5px;
+  position: absolute; top: 13px; left: 13px; z-index: 2; display: inline-flex; align-items: center; gap: 5px;
   padding: 4px 10px; border-radius: 999px; background: var(--brand-pink); color: #fff;
   font-size: 11px; font-weight: 800; letter-spacing: .5px; box-shadow: 0 4px 12px -3px rgba(216, 27, 96, .5);
 }
 .card-type {
-  position: absolute; top: 13px; right: 13px; display: inline-flex; align-items: center;
+  position: absolute; top: 13px; right: 13px; z-index: 2; display: inline-flex; align-items: center;
   padding: 4px 10px; border-radius: 7px; background: rgba(255, 255, 255, .86);
   backdrop-filter: blur(4px); color: #5E4B53; font-size: 11px; font-weight: 700;
 }
-.card-icon { color: var(--mc, var(--brand)); display: flex; align-items: center; justify-content: center; }
-.card-icon svg { width: 46px; height: 46px; }
+.card-icon { position: relative; z-index: 2; color: var(--mc, var(--brand)); display: flex; align-items: center; justify-content: center; }
+.card-icon svg { width: 50px; height: 50px; }
 .card-icon .play {
   width: 58px; height: 58px; border-radius: 50%; background: #fff;
   display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .28);
@@ -358,7 +379,7 @@ main { display: block; }
   font-size: 12.5px; font-weight: 700;
 }
 .badge-type svg { width: 13px; height: 13px; }
-.post-title { margin: 0 0 16px; font-size: clamp(26px, 4.4vw, 34px); line-height: 1.16; font-weight: 800; letter-spacing: -.6px; color: var(--head); max-width: 760px; }
+.post-title { margin: 0 0 16px; font-size: clamp(26px, 4.4vw, 34px); line-height: 1.34; font-weight: 800; letter-spacing: .2px; color: var(--head); max-width: 760px; }
 .post-summary { margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted); max-width: 720px; }
 .author { display: flex; align-items: center; gap: 18px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #EDE4E7; flex-wrap: wrap; }
 .author-id { display: flex; align-items: center; gap: 10px; }
@@ -450,7 +471,7 @@ main { display: block; }
 
 /* ===================== Footer ===================== */
 .site-footer { border-top: 1px solid var(--line); background: #FBF9F9; margin-top: 12px; }
-.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 26px 0; flex-wrap: wrap; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; flex-wrap: wrap; }
 .footer-brand { display: flex; align-items: center; gap: 11px; }
 .footer-badge {
   width: 32px; height: 32px; border-radius: 9px; background: var(--grad-brand);
@@ -527,4 +548,46 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .tl-title { display: block; font-size: 17px; font-weight: 700; color: var(--head); letter-spacing: -.2px; line-height: 1.35; transition: color .15s; }
 .tl-title:hover { color: var(--brand-pink); }
 .tl-sum { margin: 5px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--muted-2); max-width: 720px; }
-/* end styles — search focus fix + ghim section included */
+/* ===================== Trang chi tiết: bọc nội dung thành "tờ giấy" A4/Letter =====================
+   Toàn bộ nội dung bài viết được đặt trên một tờ giấy trắng, nổi bật trên nền
+   bàn có màu đậm hơn — giúp phần đọc tách bạch, không lẫn với nền trang. */
+body.page-post { background: #E7DEE2; }
+
+/* Khoảng đệm quanh "tờ giấy" (chính là mặt bàn lộ ra).
+   Không đệm dọc ở main — khoảng cách trên/dưới do margin của tờ giấy quyết định
+   để cân đối với header (phía trên) và footer (phía dưới). */
+.page-post main { padding: 0 20px; }
+
+/* Tờ giấy — margin trên = margin dưới để khoảng cách quanh nội dung đều nhau. */
+.page-post main > .wrap--post {
+  background: #fff;
+  max-width: 940px;
+  margin: 26px auto;
+  padding: 44px clamp(26px, 5vw, 62px) 54px;
+  border: 1px solid #EADFE4;
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(16, 12, 14, .05),
+    0 34px 74px -34px rgba(94, 14, 38, .28);
+}
+
+/* Đã có đệm trên của tờ giấy nên bỏ margin-top thừa của breadcrumb */
+.page-post main > .wrap--post .crumb { margin-top: 0; }
+
+/* Khung "Thông tin phiên bản" dùng nền hồng nhạt (giống ô hỗ trợ) để nổi trên tờ giấy trắng */
+.side-card--ver {
+  background: linear-gradient(160deg, #FBF4F7, #F5EAEF);
+  border-color: #F0DCE4;
+}
+.side-card--ver .side-ver { color: var(--brand); }
+
+/* Header & footer: nội dung canh GIỮA theo chiều dọc, khoảng cách trên = dưới —
+   áp dụng CHUNG cho mọi trang (trang chủ, cập nhật, hướng dẫn, chi tiết) qua
+   quy tắc .header-inner / .footer-inner ở trên. */
+
+@media (max-width: 760px) {
+  .page-post main { padding: 0 12px; }
+  .page-post main > .wrap--post { margin: 16px auto; padding: 30px 20px 38px; border-radius: 12px; }
+}
+
+/* end styles — search focus fix + ghim section + khung giấy trang chi tiết */
