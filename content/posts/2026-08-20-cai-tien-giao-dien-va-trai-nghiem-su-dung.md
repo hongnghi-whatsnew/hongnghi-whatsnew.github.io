@@ -5,9 +5,10 @@ summary: "Các thay đổi tập trung vào giao diện màu sắc, chế độ 
 module: "Thông báo chung"
 category: huong-dan
 version: "v1.3.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: ""
+cover: ""
 mediaType: none
 tags: []
 pinImportant: false

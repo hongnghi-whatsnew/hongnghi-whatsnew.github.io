@@ -5,9 +5,10 @@ summary: "Phần mềm đã thực hiện khắc phục một số lỗi và c�
 module: "Báo cáo"
 category: cap-nhat
 version: "v1.3.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: "Toàn hệ thống"
+cover: ""
 mediaType: none
 tags: []
 pinImportant: false

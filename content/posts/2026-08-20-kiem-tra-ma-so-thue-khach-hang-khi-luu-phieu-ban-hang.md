@@ -5,9 +5,10 @@ summary: "Chức năng giúp người dùng chủ động phát hiện trường
 module: "Bán hàng"
 category: cap-nhat
 version: "v1.3.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: "Phòng Kế toán"
+cover: ""
 mediaType: none
 tags: []
 pinImportant: false

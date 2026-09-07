@@ -5,9 +5,10 @@ summary: "Phần mềm bổ sung chức năng xem trước tài liệu đính k�
 module: "Thông báo chung"
 category: cap-nhat
 version: "v1.3.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: "Phòng Kinh Doanh"
+cover: ""
 mediaType: none
 tags: []
 pinImportant: false
