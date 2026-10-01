@@ -18,4 +18,7 @@ export const SITE = {
   // Mã GoatCounter để đếm lượt xem (vd 'hongnghi' nếu trang là hongnghi.goatcounter.com).
   // Để trống ('') để tắt đếm lượt xem.
   goatcounter: 'hongnghi',
+  // Namespace Abacus (abacus.jasoncameron.dev) để hiện số lượt xem tức thì trên trang bài viết
+  // (GoatCounter cache số tới 4 tiếng). Để trống ('') để dùng số của GoatCounter.
+  abacus: 'hongnghi-whatsnew',
 };
