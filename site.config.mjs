@@ -20,5 +20,5 @@ export const SITE = {
   goatcounter: 'hongnghi',
   // Namespace Abacus (abacus.jasoncameron.dev) để hiện số lượt xem tức thì trên trang bài viết
   // (GoatCounter cache số tới 4 tiếng). Để trống ('') để dùng số của GoatCounter.
-  abacus: 'hongnghi-whatsnew',
+  abacus: 'hongnghi-erp-views',
 };
