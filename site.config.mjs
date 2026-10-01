@@ -15,4 +15,7 @@ export const SITE = {
   // Liên kết "Gửi yêu cầu hỗ trợ" ở trang chi tiết. Có thể là mailto: hoặc URL nội bộ.
   // Để trống ('') nếu muốn ẩn ô hỗ trợ.
   supportUrl: 'https://zalo.me/0857774776',
+  // Mã GoatCounter để đếm lượt xem (vd 'hongnghi' nếu trang là hongnghi.goatcounter.com).
+  // Để trống ('') để tắt đếm lượt xem.
+  goatcounter: 'hongnghi',
 };
