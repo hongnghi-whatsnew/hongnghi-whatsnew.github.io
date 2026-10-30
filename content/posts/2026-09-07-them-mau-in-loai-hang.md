@@ -5,7 +5,7 @@ summary: "Bổ sung mẫu in Phiếu xuất kho Loại hàng giúp người dùn
 module: "Kho hàng"
 category: cap-nhat
 version: "v3.0.0"
-isNew: true
+isNew: false
 scope: "Kho hàng"
 department: "Thủ kho"
 cover: "/posts/2026-09-07-them-mau-in-loai-hang/cover.png"

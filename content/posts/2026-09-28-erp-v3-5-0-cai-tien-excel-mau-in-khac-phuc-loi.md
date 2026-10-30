@@ -5,7 +5,7 @@ summary: "Trong phiên bản ERP v3.5.0, hệ thống tiếp tục được hoà
 module: "Thông báo chung"
 category: cap-nhat
 version: "v3.5.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: "Phòng Kinh Doanh"
 cover: "/posts/2026-09-28-erp-v3-5-0-cai-tien-excel-mau-in-khac-phuc-loi/cover.png"

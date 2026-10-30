@@ -5,7 +5,7 @@ summary: "Mục tiêu là giúp hệ thống **an toàn hơn nhưng vẫn thuậ
 module: "Hệ thống"
 category: cap-nhat
 version: "v3.0.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: ""
 cover: "/posts/2026-09-07-nang-cap-bao-mat-va-dang-nhap-cho-he-thong/cover.png"

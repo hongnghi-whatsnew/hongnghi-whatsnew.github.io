@@ -5,7 +5,7 @@ summary: "Phần mềm được cập nhật và cải tiến phân hệ Tính g
 module: "Kế toán"
 category: cap-nhat
 version: "v1.3.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: "Phòng Kế toán"
 cover: "/posts/2026-08-20-cap-nhat-phan-he-tinh-gia-thanh-va-cac-tinh-nang-lien-quan/cover.png"

@@ -78,6 +78,18 @@
   .stat .v.ok{color:var(--ok)} .stat .v.warn{color:var(--warn)} .stat .v.pink{color:var(--pink)}
 
   /* ---- Table ---- */
+  .list-filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
+  .list-filters label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);flex:1;min-width:130px}
+  .list-filters .fld{height:40px;font-size:13px;padding:0 10px}
+  .list-pagination{display:flex;gap:12px;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--muted)}
+  .list-pagination[hidden]{display:none}
+  .list-pagination .btn:disabled{opacity:.45;cursor:default}
+  .list-result{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .sortbtn{border:0;background:none;color:inherit;font:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer;padding:0;white-space:nowrap}
+  .sortbtn:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+  .status--new{background:#FCEBF1;color:var(--pink)}
+  #list{overflow-x:auto}
+  #list table{min-width:1000px}
   .tbl{background:#fff;border:1px solid var(--line2);border-radius:16px;overflow:hidden}
   table{width:100%;border-collapse:collapse}
   thead th{text-align:left;padding:13px 20px;background:#FBF7F9;border-bottom:1px solid #F0E7EA;
@@ -241,7 +253,23 @@
           <div class="stat"><div class="k">Bản nháp</div><div class="v warn" id="st-draft">0</div></div>
           <div class="stat"><div class="k">Gắn nhãn Mới</div><div class="v pink" id="st-new">0</div></div>
         </div>
+        <div class="list-filters" id="list-filters" role="group" aria-label="Bộ lọc bài viết">
+          <label>Tiêu đề<input class="fld" id="filter-title" type="search" placeholder="Tìm tiêu đề…"></label>
+          <label>Module<select class="fld" id="filter-module"><option value="">Tất cả module</option></select></label>
+          <label>Phiên bản<input class="fld" id="filter-version" type="search" placeholder="Tìm phiên bản…"></label>
+          <label>Nhãn<select class="fld" id="filter-label"><option value="">Tất cả nhãn</option><option value="new">Mới</option><option value="none">Không gắn</option></select></label>
+          <label>Trạng thái<select class="fld" id="filter-status"><option value="">Tất cả trạng thái</option><option value="pub">Đã xuất bản</option><option value="draft">Bản nháp</option></select></label>
+          <label>Từ ngày<input class="fld" id="filter-from" type="date"></label>
+          <label>Đến ngày<input class="fld" id="filter-to" type="date"></label>
+          <button class="btn btn--ghost" id="btn-reset-list" type="button">Đặt lại</button>
+        </div>
+        <div class="list-result" id="list-result" role="status"></div>
         <div class="tbl" id="list"><div class="loading">Đang tải…</div></div>
+        <nav class="list-pagination" id="list-pagination" aria-label="Phân trang bài viết" hidden>
+          <button class="btn btn--ghost" id="btn-prev-page" type="button">Trước</button>
+          <span id="list-page-info" role="status"></span>
+          <button class="btn btn--ghost" id="btn-next-page" type="button">Sau</button>
+        </nav>
       </div>
     </section>
 
@@ -467,15 +495,62 @@ function showList(){ $('#view-list').hidden=false; $('#view-edit').hidden=true; 
 function showEdit(){ $('#view-list').hidden=true; $('#view-edit').hidden=false; $('#nav-list').classList.remove('is-active'); $('#nav-new').classList.add('is-active'); window.scrollTo(0,0); }
 
 /* ---- List ---- */
+let listPosts=[];
+let listPage=1;
+const LIST_PAGE_SIZE=10;
+let listSort={key:'',direction:1};
+function selectPosts(posts,filters,sort){
+  const contains=(value,query)=>String(value||'').toLocaleLowerCase('vi').includes(String(query||'').trim().toLocaleLowerCase('vi'));
+  const result=posts.filter(p=>contains(p.title,filters.title)
+    && (!filters.module || p.module===filters.module)
+    && contains(p.version,filters.version)
+    && (!filters.label || !!p.isNew===(filters.label==='new'))
+    && (!filters.status || !!p.draft===(filters.status==='draft'))
+    && (!filters.from || String(p.date||'').slice(0,10)>=filters.from)
+    && (!filters.to || (!!p.date && String(p.date).slice(0,10)<=filters.to)));
+  if(sort.key) result.sort((a,b)=>{
+    const av=a[sort.key],bv=b[sort.key];
+    const order=['isNew','draft'].includes(sort.key)
+      ? Number(!!av)-Number(!!bv)
+      : String(av||'').localeCompare(String(bv||''),'vi',{numeric:true,sensitivity:'base'});
+    return order*sort.direction;
+  });
+  return result;
+}
+function renderList(){
+  const filters={};
+  for(const key of ['title','module','version','label','status','from','to']) filters[key]=$('#filter-'+key).value;
+  render(listPosts,filters);
+}
+function resetListPage(){ listPage=1; renderList(); }
+$('#list-filters').addEventListener('input',resetListPage);
+$('#list-filters').addEventListener('change',resetListPage);
+$('#btn-prev-page').addEventListener('click',()=>{ listPage--; renderList(); });
+$('#btn-next-page').addEventListener('click',()=>{ listPage++; renderList(); });
+$('#btn-reset-list').addEventListener('click',()=>{
+  document.querySelectorAll('#list-filters input,#list-filters select').forEach(el=>el.value='');
+  listSort={key:'',direction:1}; resetListPage();
+});
+$('#list').addEventListener('click',e=>{
+  const button=e.target.closest('[data-sort]'); if(!button) return;
+  const key=button.dataset.sort;
+  listSort={key,direction:listSort.key===key?-listSort.direction:1}; resetListPage();
+});
 async function loadList(){
+  $('#list-pagination').hidden=true;
   const list=$('#list'); list.innerHTML='<div class="loading">Đang tải…</div>';
   try{
     const r=await fetch('/api/posts'); const j=await r.json();
     if(!j.ok) throw new Error(j.error||'Lỗi tải danh sách');
-    render(j.posts||[]);
+    listPosts=j.posts||[];
+    const selected=$('#filter-module').value;
+    const modules=[...new Set(listPosts.map(p=>p.module).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'vi'));
+    $('#filter-module').innerHTML='<option value="">Tất cả module</option>'+modules.map(m=>'<option value="'+esc(m)+'">'+esc(m)+'</option>').join('');
+    $('#filter-module').value=modules.includes(selected)?selected:'';
+    renderList();
   }catch(e){ list.innerHTML='<div class="empty">Không tải được danh sách: '+esc(e.message)+'</div>'; }
 }
-function render(posts){
+function render(posts,filters){
   const total=posts.length;
   const pub=posts.filter(p=>!p.draft).length;
   const draft=posts.filter(p=>p.draft).length;
@@ -483,9 +558,21 @@ function render(posts){
   $('#nav-count').textContent=total; $('#st-total').textContent=total;
   $('#st-pub').textContent=pub; $('#st-draft').textContent=draft; $('#st-new').textContent=nw;
 
+  const visible=selectPosts(posts,filters,listSort);
+  const pageCount=Math.max(1,Math.ceil(visible.length/LIST_PAGE_SIZE));
+  listPage=Math.max(1,Math.min(listPage,pageCount));
+  const start=(listPage-1)*LIST_PAGE_SIZE;
+  const pagePosts=visible.slice(start,start+LIST_PAGE_SIZE);
+  $('#list-result').textContent=visible.length
+    ? 'Hiển thị '+(start+1)+'–'+(start+pagePosts.length)+' / '+visible.length+' bài viết phù hợp (tổng '+total+' bài)'
+    : 'Không có bài viết phù hợp (tổng '+total+' bài)';
+  $('#list-pagination').hidden=visible.length<=LIST_PAGE_SIZE;
+  $('#list-page-info').textContent='Trang '+listPage+' / '+pageCount;
+  $('#btn-prev-page').disabled=listPage===1;
+  $('#btn-next-page').disabled=listPage===pageCount;
   if(!total){ $('#list').innerHTML='<div class="empty">Chưa có bài viết nào. Bấm “Tạo bài mới” để bắt đầu.</div>'; return; }
   let rows='';
-  for(const p of posts){
+  for(const p of pagePosts){
     const t=typeOf(p.mediaType); const mc=moduleColor(p.module);
     rows+='<tr>'
       +'<td><div class="ti">'
@@ -494,6 +581,7 @@ function render(posts){
       +'</div></td>'
       +'<td>'+(p.module?'<span class="pill" style="background:'+hexA(mc,.10)+';color:'+mc+'"><span class="dot" style="background:'+mc+'"></span>'+esc(p.module)+'</span>':'<span class="ts">—</span>')+'</td>'
       +'<td><span class="ver">'+(esc(p.version)||'—')+'</span></td>'
+      +'<td>'+(p.isNew?'<span class="status status--new">Mới</span>':'<span class="ts">Không gắn</span>')+'</td>'
       +'<td>'+(p.draft?'<span class="status status--draft">Bản nháp</span>':'<span class="status status--pub">Đã xuất bản</span>')+'</td>'
       +'<td class="td-date">'+fmtDate(p.date)+'</td>'
       +'<td><div class="acts">'
@@ -503,8 +591,11 @@ function render(posts){
     +'</tr>';
   }
   $('#list').innerHTML='<table><thead><tr>'
-    +'<th>Tiêu đề</th><th>Module</th><th>Phiên bản</th><th>Trạng thái</th><th>Ngày</th><th class="right">Thao tác</th>'
-    +'</tr></thead><tbody>'+rows+'</tbody></table>';
+    +[['title','Tiêu đề'],['module','Module'],['version','Phiên bản'],['isNew','Nhãn'],['draft','Trạng thái'],['date','Ngày']].map(([key,label])=>{
+      const active=listSort.key===key;
+      return '<th scope="col" aria-sort="'+(active?(listSort.direction===1?'ascending':'descending'):'none')+'"><button type="button" class="sortbtn" data-sort="'+key+'" title="Sắp xếp theo '+label+'">'+label+' <span aria-hidden="true">'+(active?(listSort.direction===1?'↑':'↓'):'↕')+'</span></button></th>';
+    }).join('')+'<th scope="col" class="right">Thao tác</th>'
+    +'</tr></thead><tbody>'+(rows||'<tr><td colspan="7" class="empty">Không có bài viết phù hợp với bộ lọc.</td></tr>')+'</tbody></table>';
 }
 
 /* ---- Module select ---- */

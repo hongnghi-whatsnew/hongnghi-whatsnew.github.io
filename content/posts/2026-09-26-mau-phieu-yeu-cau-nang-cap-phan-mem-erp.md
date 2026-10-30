@@ -5,13 +5,11 @@ summary: "Tải biểu mẫu để đề xuất bổ sung chức năng, chỉnh 
 module: "Thông báo chung"
 category: huong-dan
 version: "V3.3.2"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: ""
 cover: "/posts/2026-09-26-mau-phieu-yeu-cau-nang-cap-phan-mem-erp/cover.png"
 mediaType: none
-originalFile: "/posts/2026-09-26-mau-phieu-yeu-cau-nang-cap-phan-mem-erp/phieu-yeu-cau-nang-cap-erp.docx"
-originalLabel: "PHIEU_YEU_CAU_NANG_CAP_ERP"
 tags: []
 pinImportant: false
 pinned: true

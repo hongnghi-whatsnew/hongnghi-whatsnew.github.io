@@ -5,7 +5,7 @@ summary: "Các lỗi phát sinh trong quá trình sử dụng và vận hành th
 module: "Thông báo chung"
 category: cap-nhat
 version: "v3.0.0"
-isNew: true
+isNew: false
 scope: "Toàn hệ thống"
 department: ""
 cover: "/posts/2026-09-07-tong-hop-cac-loi-da-duoc-khac-phuc/cover.png"
