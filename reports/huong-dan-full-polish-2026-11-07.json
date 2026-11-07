@@ -1,0 +1,503 @@
+[
+  {
+    "code": "BC-A01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Không minh họa số nợ hoặc đối chiếu tuổi nợ của khách mẫu; cột chi nhánh đang ngoài vùng chụp."
+    ]
+  },
+  {
+    "code": "BC-A02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Thiếu dòng mẫu đầy đủ các chỉ số tần suất; điện thoại/nhân viên đã che."
+    ]
+  },
+  {
+    "code": "BC-A03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Các cột số tồn/giá trị nằm ngoài vùng chụp; không thay cảnh số tồn theo kỳ/hiện tại."
+    ]
+  },
+  {
+    "code": "BC-B01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Đã che số tiền, tỷ lệ thẻ và đồ thị; không minh họa số liệu/kết quả tài chính."
+    ]
+  },
+  {
+    "code": "BC-B02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chưa đối chiếu giá trị tài chính hoặc kết quả tính."
+    ]
+  },
+  {
+    "code": "BC-B03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không đại diện dữ liệu mẫu có phát sinh."
+    ]
+  },
+  {
+    "code": "BH-A03.2",
+    "removed": [
+      "**Cần bổ sung:** Chuẩn bị đơn đặt TEST đã có thành phẩm đủ điều kiện, lấy dòng vào phiếu và kiểm tra lượng, giá, thuế, lưu/mở lại."
+    ]
+  },
+  {
+    "code": "GT-A01.1",
+    "removed": [
+      "Đã có ảnh danh sách trước thao tác ở trên; ảnh hộp tính và kết quả sau Thực hiện còn chờ xác minh theo cảnh chụp cuối bài. Thao tác tìm/lọc danh sách chung xem [HƯỚNG DẪN TÌM KIẾM, LỌC, SẮP XẾP, NHÓM, CHỌN CỘT VÀ LỌC THEO KHOẢNG NGÀY TRÊN DANH SÁCH](/bai-viet/2026-11-07-gen-04-huong-dan-tim-kiem-loc-sap-xep-nhom-chon-cot-va-loc-theo-khoang-ngay-tren-danh-sach/); không suy từ nút hiển thị thành quyền đã được cấp."
+    ]
+  },
+  {
+    "code": "GT-A02.3",
+    "removed": [
+      "**Cần bổ sung:** Dùng kỳ TEST được đối chiếu chi phí, Cất và kiểm tra chứng từ, giá thành và sổ liên quan."
+    ]
+  },
+  {
+    "code": "GT-A02.4",
+    "removed": [
+      "**Cần bổ sung:** Có chứng từ kết chuyển của kỳ TEST, chụp xác nhận, thử hủy và đối chiếu mở lại kỳ/sổ."
+    ]
+  },
+  {
+    "code": "HT-A01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không phải danh sách IP giả đã duyệt.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không nói cửa sổ hoàn toàn trống: runtime có giá trị/gợi ý tự điền đã che."
+    ]
+  },
+  {
+    "code": "HT-A02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không phải tài khoản thử đã được duyệt; chưa thay đổi quyền hoặc mật khẩu.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không gọi là cửa sổ trống; không có thông tin đăng nhập được phép công bố."
+    ]
+  },
+  {
+    "code": "HT-A02.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có thao tác thử hoặc cảnh mở lại để chứng minh quyền đã lưu. Không phải tài khoản thử được duyệt."
+    ]
+  },
+  {
+    "code": "HT-A02.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không thay đổi/lưu phạm vi; tài khoản hiện có, chưa có thử phân quyền.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không thay đổi/lưu phạm vi; tài khoản hiện có, chưa có thử phân quyền."
+    ]
+  },
+  {
+    "code": "HT-A02.3",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Tên tài khoản đích đã che; chưa có xác nhận nguồn/đích và kết quả sao chép."
+    ]
+  },
+  {
+    "code": "HT-A02.4",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không có mật khẩu mới hoặc kết quả đặt lại; không phải tài khoản thử đã duyệt."
+    ]
+  },
+  {
+    "code": "HT-A05.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Runtime cảnh báo không đọc được trạng thái realtime Redis; trạng thái/hoạt động cuối chưa dùng được. Chưa có phiên thử hoặc thao tác thu hồi."
+    ]
+  },
+  {
+    "code": "HT-A06.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không chứng minh chế độ Tất cả chức năng hoặc chi tiết xu hướng."
+    ]
+  },
+  {
+    "code": "KHO-A01.0",
+    "removed": [
+      "**Cần bổ sung:** Dùng tài khoản Google đã được cấp quyền để kiểm tra bảng và các bước điều phối theo phân công."
+    ]
+  },
+  {
+    "code": "KHO-C07.0",
+    "removed": [
+      "Hình 4 là LDF E2 (9x1220x2440) DW ở KHO TEST ngày 11/10/2026: 4 chứng từ mượn hàng (*Nhập trả hàng cho mượn*, *Nhập mượn hàng*, *Xuất cho mượn hàng*, *Xuất trả hàng mượn*), dòng **TỔNG CỘNG** (khung đỏ) ghi **Đầu kỳ: 9** và tổng **Số lượng nhập** 4. Cửa sổ có nút **Tải lại**, Xuất Excel, Trình chọn cột, **Tìm kiếm…**; đóng bằng dấu **×** đỏ ở góc trên phải."
+    ]
+  },
+  {
+    "code": "KHO-D03.0",
+    "removed": [
+      "Hình 1 là phiếu thử NM00113302 (11/10/2026): mượn 3 tấm LDF E2 (9x1220x2440) DW về KHO TEST. Cột **Mã phiếu xuất trả** (khung đỏ không số) đang hiện **NM00113302** – mã **phiếu nhập mượn**, không phải mã phiếu xuất trả XT00113303 (xem phần “Những điều cần lưu ý”)."
+    ]
+  },
+  {
+    "code": "KT-A03.3",
+    "removed": [
+      "**Cần bổ sung:** Có giao dịch Ghi có TEST được nhập đúng luồng, đối chiếu số tiền và trạng thái lập CT trước/sau lưu phiếu."
+    ]
+  },
+  {
+    "code": "KT-A05.2",
+    "removed": [
+      "**Cần bổ sung:** Khắc phục tải mẫu in CT00110577; chụp bản xem trước có mã/ngày/số tiền và kiểm tra bản xuất."
+    ]
+  },
+  {
+    "code": "SX-A01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Không phải lệnh vừa tạo hoặc kết quả thao tác thử."
+    ]
+  },
+  {
+    "code": "SX-A01.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không có dấu hiệu Giấy/Keo trong PNG/AX; chưa được dùng để khẳng định đủ hai chế độ. Chưa có vật tư, LOT hoặc phiếu đã lưu.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không có dấu hiệu Giấy/Keo trong PNG/AX; chưa được dùng để khẳng định đủ hai chế độ. Chưa có vật tư, LOT hoặc phiếu đã lưu."
+    ]
+  },
+  {
+    "code": "SX-A01.3",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Không khẳng định cùng số lệnh với ảnh Xem thông tin SX00113077.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Ảnh xem thông tin lệnh riêng là SX00113077, khác hồ sơ; không ghép thành một chuỗi trước/sau. Không đủ đối chiếu lượng/LOT và hai kho: kho xuất đang trống, lượng đã che."
+    ]
+  },
+  {
+    "code": "SX-A03.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Đây là cửa sổ chọn nguồn, chưa phải phiếu nhập vật tư đã nhập dữ liệu."
+    ]
+  },
+  {
+    "code": "SX-A04.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có xem phiếu/dòng vật tư."
+    ]
+  },
+  {
+    "code": "SX-A04.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Đây là hộp chọn lệnh, không phải cửa sổ Phiếu xuất vật tư. Không chứng minh bộ lọc trạng thái Chưa nhập/chưa có trạng thái hoặc đã chọn nguồn hợp lệ."
+    ]
+  },
+  {
+    "code": "SX-A05.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không có dòng tính tiền hoặc kết quả ghi nhận."
+    ]
+  },
+  {
+    "code": "SX-A05.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không có dòng tính tiền hoặc kết quả ghi nhận."
+    ]
+  },
+  {
+    "code": "SX-B01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Cửa sổ cao hơn vùng hiển thị; phần tiêu đề bị cảnh báo giao diện che nên ảnh chỉ minh họa vùng cửa sổ nhìn thấy. Chưa có dòng vật tư hoặc kết quả ghi nhận."
+    ]
+  },
+  {
+    "code": "SX-B01.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Cửa sổ cao hơn vùng hiển thị; phần tiêu đề bị cảnh báo giao diện che nên ảnh chỉ minh họa vùng cửa sổ nhìn thấy. Chưa có dòng vật tư hoặc kết quả ghi nhận."
+    ]
+  },
+  {
+    "code": "SX-B02.1",
+    "removed": [
+      "**Cần bổ sung:** Lập yêu cầu đủ chi tiết TEST, lưu, mở lại và đối chiếu các loại yêu cầu."
+    ]
+  },
+  {
+    "code": "SX-B02.2",
+    "removed": [
+      "**Cần bổ sung:** Nhập lượng tất toán trên yêu cầu TEST còn lượng phù hợp, lưu và đối chiếu tiến độ/tồn."
+    ]
+  },
+  {
+    "code": "SX-B02.3",
+    "removed": [
+      "**Cần bổ sung:** Dùng kết nối TEST hai đầu và gói yêu cầu thực tế để xác minh gửi, nhận, ánh xạ, lỗi và chống trùng."
+    ]
+  },
+  {
+    "code": "SX-B02.5",
+    "removed": [
+      "**Cần bổ sung:** Dùng đơn đặt TEST còn chờ sản xuất, lấy dòng vào yêu cầu và đối chiếu lượng sau lưu; xác minh bộ lọc ngày."
+    ]
+  },
+  {
+    "code": "SX-B03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Thiếu xem phiếu, dòng lỗi, phí và THCP."
+    ]
+  },
+  {
+    "code": "SX-B03.1",
+    "removed": [
+      "**Cần bổ sung:** Lập lần nhập TEST từ yêu cầu, lưu và đối chiếu đạt/lỗi, phí, tiến độ và kho."
+    ]
+  },
+  {
+    "code": "SX-B03.2",
+    "removed": [
+      "**Cần bổ sung:** Chuẩn bị yêu cầu Ngoài API TEST hợp lệ và xác minh nhận kết quả, ánh xạ thành phẩm, lượng và chống nhập trùng."
+    ]
+  },
+  {
+    "code": "SX-B03.3",
+    "removed": [
+      "**Cần bổ sung:** Kiểm tra bản giấy/PDF xuất từ viewer, các phiếu Ngoài/API và mẫu được duyệt tại đơn vị."
+    ]
+  },
+  {
+    "code": "SX-B03.4",
+    "removed": [
+      "**Cần bổ sung:** Đổi nguồn trên phiếu TEST, xác nhận, mở lại và đối chiếu thống kê theo nhân lực."
+    ]
+  },
+  {
+    "code": "SX-C01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C04.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu. Runtime hiện tiêu đề THỐNG KÊ TÌNH HÌNH XUẤT KHO; cần xác minh với bài Tỷ lệ hàng lỗi."
+    ]
+  },
+  {
+    "code": "SX-C05.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C06.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C07.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "SX-C08.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có dòng mẫu/kết quả xử lý để đối chiếu."
+    ]
+  },
+  {
+    "code": "TL-A01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công."
+    ]
+  },
+  {
+    "code": "TL-A01.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công."
+    ]
+  },
+  {
+    "code": "TL-A01.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có xem trước file, kiểm tra lỗi hoặc kết quả import."
+    ]
+  },
+  {
+    "code": "TL-A03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công."
+    ]
+  },
+  {
+    "code": "TL-A03.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có xem trước file, kiểm tra lỗi hoặc kết quả import."
+    ]
+  },
+  {
+    "code": "TL-A06.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công."
+    ]
+  },
+  {
+    "code": "TL-A06.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có xem trước file, kiểm tra lỗi hoặc kết quả import."
+    ]
+  },
+  {
+    "code": "TL-A07.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Ảnh danh sách chỉ minh họa danh sách; biểu mẫu thêm mới ở Hình 2.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công."
+    ]
+  },
+  {
+    "code": "TL-A08.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Thiếu cửa sổ thêm mới; không dùng ảnh này thay cửa sổ.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công."
+    ]
+  },
+  {
+    "code": "TL-B02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công."
+    ]
+  },
+  {
+    "code": "TL-B02.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Thiếu trường hợp tự điền từ mã số thuế.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Không có dữ liệu tài khoản thật hoặc kết quả ghi nhận."
+    ]
+  },
+  {
+    "code": "TL-E01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công."
+    ]
+  },
+  {
+    "code": "TL-E01.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không thay cảnh dòng giá mẫu đã nhập."
+    ]
+  },
+  {
+    "code": "TL-E01.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Không thay cảnh dòng giá mẫu đã nhập."
+    ]
+  },
+  {
+    "code": "TL-E02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chưa có lịch sử phản hồi hoặc tổng hợp phản hồi."
+    ]
+  },
+  {
+    "code": "TL-E02.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chỉ minh họa tab trống; thiếu dòng mẫu/quy cách, giá thử và cảnh báo khớp/trùng.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chỉ minh họa tab trống; thiếu dòng mẫu/quy cách, giá thử và cảnh báo khớp/trùng.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chỉ minh họa tab trống; thiếu dòng mẫu/quy cách, giá thử và cảnh báo khớp/trùng.",
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Chỉ minh họa tab trống; thiếu dòng mẫu/quy cách, giá thử và cảnh báo khớp/trùng."
+    ]
+  },
+  {
+    "code": "TL-E02.2",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Thiếu NCC thử, nhóm giá đọc từ file và xác nhận khớp/trùng."
+    ]
+  },
+  {
+    "code": "TL-F01.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Không gọi cửa sổ trống: browser tự điền ở URL/secret; chưa có cấu hình thử hoặc kết nối thành công."
+    ]
+  },
+  {
+    "code": "TL-F01.1",
+    "removed": [
+      "**Cần bổ sung:** IT xác nhận mã riêng của chi nhánh và endpoint/secret TEST, kiểm tra ánh xạ và đồng bộ hai chiều."
+    ]
+  },
+  {
+    "code": "TL-F02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công.",
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công."
+    ]
+  },
+  {
+    "code": "TL-F02.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Kế hoạch yêu cầu cảnh sau tải file; ảnh này chưa đáp ứng xem trước, lỗi hoặc kết quả import."
+    ]
+  },
+  {
+    "code": "TL-G01.0",
+    "removed": [
+      "**Cần bổ sung:** IT cung cấp cấu hình TEST được phê duyệt để kiểm tra lưu và kết quả trao đổi; kiểm tra quyền tài khoản được phân công."
+    ]
+  },
+  {
+    "code": "TL-G02.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Runtime dùng nhãn MISA; kế hoạch gọi AMIS. Không có đối tượng đã liên kết."
+    ]
+  },
+  {
+    "code": "TL-G02.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Runtime là cửa sổ THÊM, không phải bản mở lại mapping đã ghi; thiếu phía MISA và ít nhất một đối tượng nội bộ thử."
+    ]
+  },
+  {
+    "code": "TL-G03.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Nhãn runtime là MISA; bản kế hoạch dùng AMIS. Cần đối chiếu tên trước phát hành. Không có mapping nội bộ hoặc kết quả lưu."
+    ]
+  },
+  {
+    "code": "TL-G03.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Runtime là cửa sổ THÊM, không phải bản mở lại mapping đã ghi; thiếu phía MISA và ít nhất một đối tượng nội bộ thử."
+    ]
+  },
+  {
+    "code": "TL-G04.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Nhãn runtime là MISA; bản kế hoạch dùng AMIS. Cần đối chiếu tên trước phát hành. Không có mapping nội bộ hoặc kết quả lưu."
+    ]
+  },
+  {
+    "code": "TL-G04.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Runtime là cửa sổ THÊM, không phải bản mở lại mapping đã ghi; thiếu phía MISA và ít nhất một đối tượng nội bộ thử."
+    ]
+  },
+  {
+    "code": "TL-G05.0",
+    "removed": [
+      "Lưu ý cho ảnh này: Không suy ảnh danh sách/cửa sổ trước thao tác thành kết quả đã lưu/thành công. Nhãn runtime là MISA; bản kế hoạch dùng AMIS. Cần đối chiếu tên trước phát hành. Không có mapping nội bộ hoặc kết quả lưu."
+    ]
+  },
+  {
+    "code": "TL-G05.1",
+    "removed": [
+      "Lưu ý cho ảnh này: Chỉ minh họa đúng chế độ trong ảnh; không suy thành thao tác thành công. Runtime là cửa sổ THÊM, không phải bản mở lại mapping đã ghi; thiếu phía MISA và ít nhất một đối tượng nội bộ thử."
+    ]
+  }
+]
